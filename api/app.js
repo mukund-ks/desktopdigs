@@ -23,14 +23,10 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/test', (req, res, next) => {
-    res.json('test ok');
-});
-
 app.use('/images', imageRoutes);
 
 app.use((req, res, next) => {
-    const err = new Error("Not Found");
+    const err = new Error('Not Found');
     err.status = 404;
     next(err);
 });

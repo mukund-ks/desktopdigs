@@ -14,19 +14,35 @@ const ObjectURL = `https://${process.env.AWS_BUCKET_NAME}.s3.ap-south-1.amazonaw
 
 export const get_all_images = (req, res, next) => {
     Image.find()
+        .select('_id imageURL name tags')
         .exec()
         .then(doc => {
-            res.status(200).json(doc);
+            if (doc.length == 0) {
+                res.status(404).json({ message: 'No entries in database' });
+            } else {
+                const response = {
+                    count: doc.length,
+                    images: doc.map(d => {
+                        return {
+                            _id: d._id,
+                            name: d.name,
+                            imageURL: d.imageURL,
+                            tags: d.tags
+                        };
+                    })
+                };
+                res.status(200).json(response);
+            }
         })
         .catch(err => {
             res.status(500).json({ error: err });
-        })
+        });
 };
 
 export const add_image = (req, res, next) => {
     const command = new ListObjectsV2Command({
         Bucket: process.env.AWS_BUCKET_NAME,
-        MaxKeys: 3
+        MaxKeys: 174
     });
 
     client.send(command)
@@ -37,7 +53,7 @@ export const add_image = (req, res, next) => {
                         if (doc) {
                             return;
                         }
-                        
+
                         const image = new Image({
                             _id: new mongoose.Types.ObjectId(),
                             name: img.Key,
@@ -50,10 +66,66 @@ export const add_image = (req, res, next) => {
         })
         .then(() => {
             res.status(201).json({
-                message: 'Non-Duplicate Images saved'
+                message: 'Images saved/updated.'
             });
         })
         .catch(err => {
             res.status(500).json({ error: err });
         })
+};
+
+export const get_by_tags = (req, res, next) => {
+    Image.find({
+        tags: { $all: [req.params.tag1.toUpperCase(), req.params.tag2.toUpperCase()] }
+    }).select('_id imageURL name tags')
+        .exec()
+        .then(doc => {
+            if(doc.length==0){
+                res.status(404).json({message:'No results for provided tag combination'});
+            } else {
+                const response = {
+                    count: doc.length,
+                    images: doc.map(d=>{
+                        return {
+                            _id: d._id,
+                            name: d.name,
+                            imageURL: d.imageURL,
+                            tags: d.tags
+                        };
+                    })
+                };
+                res.status(200).json(response);
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ error: err });
+        });
+};
+
+export const get_by_single_tag = (req, res, next) => {
+    Image.find({
+        tags: { $elemMatch: { $eq: req.params.tag.toUpperCase() } }
+    }).select('_id imageURL name tags')
+        .exec()
+        .then(doc => {
+            if(doc.length==0){
+                res.status(404).json({message:'No results for chosen tag'});
+            } else {
+                const response = {
+                    count:doc.length,
+                    images:doc.map(d=>{
+                        return {
+                            _id:d._id,
+                            name:d.name,
+                            imageURL:d.imageURL,
+                            tags:d.tags
+                        };
+                    })
+                };
+                res.status(200).json(response);
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ error: err });
+        });
 };
