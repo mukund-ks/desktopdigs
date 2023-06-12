@@ -1,6 +1,6 @@
-import Express from "express";
+import Express from 'express';
 const router = Express.Router();
-import { get_all_images, add_image, get_by_tags, get_by_single_tag } from "../controllers/image.js";
+import { get_all_images, add_image, get_by_tags, get_by_single_tag } from '../controllers/image.js';
 
 router.get('/all', get_all_images);
 

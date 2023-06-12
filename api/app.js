@@ -23,7 +23,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/images', imageRoutes);
+app.use('/api/images', imageRoutes);
 
 app.use((req, res, next) => {
     const err = new Error('Not Found');

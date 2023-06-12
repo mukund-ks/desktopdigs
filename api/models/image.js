@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const imageSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,

@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import Image from "../models/image.js";
+import mongoose from 'mongoose';
+import Image from '../models/image.js';
 import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3';
 
 const client = new S3Client({
@@ -80,12 +80,12 @@ export const get_by_tags = (req, res, next) => {
     }).select('_id imageURL name tags')
         .exec()
         .then(doc => {
-            if(doc.length==0){
-                res.status(404).json({message:'No results for provided tag combination'});
+            if (doc.length == 0) {
+                res.status(404).json({ message: 'No results for provided tag combination' });
             } else {
                 const response = {
                     count: doc.length,
-                    images: doc.map(d=>{
+                    images: doc.map(d => {
                         return {
                             _id: d._id,
                             name: d.name,
@@ -108,17 +108,17 @@ export const get_by_single_tag = (req, res, next) => {
     }).select('_id imageURL name tags')
         .exec()
         .then(doc => {
-            if(doc.length==0){
-                res.status(404).json({message:'No results for chosen tag'});
+            if (doc.length == 0) {
+                res.status(404).json({ message: 'No results for chosen tag' });
             } else {
                 const response = {
-                    count:doc.length,
-                    images:doc.map(d=>{
+                    count: doc.length,
+                    images: doc.map(d => {
                         return {
-                            _id:d._id,
-                            name:d.name,
-                            imageURL:d.imageURL,
-                            tags:d.tags
+                            _id: d._id,
+                            name: d.name,
+                            imageURL: d.imageURL,
+                            tags: d.tags
                         };
                     })
                 };
