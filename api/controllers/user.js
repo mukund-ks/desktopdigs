@@ -4,11 +4,11 @@ import bcrypt from 'bcrypt';
 import User from '../models/user.js';
 
 export const register_user = (req, res, next) => {
-    User.find({ email: req.body.email })
+    User.find({ $or: [{ email: req.body.email }, { username: req.body.username }] })
         .exec()
         .then(user => {
             if (user.length >= 1) {
-                return res.status(409).json({ message: 'E-mail already in use' });
+                return res.status(409).json({ message: 'E-mail or username already in use' });
             } else {
                 bcrypt.hash(req.body.password, 10, (err, hashPass) => {
                     if (err) {
@@ -121,5 +121,5 @@ export const get_all_users = (req, res, next) => {
         })
         .catch(err => {
             res.status(500).json({ error: err });
-        })
+        });
 };
