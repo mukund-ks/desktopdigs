@@ -66,7 +66,7 @@ export const add_image = (req, res, next) => {
         })
         .then(() => {
             res.status(201).json({
-                message: 'Images saved/updated.'
+                message: 'Images saved (or updated)'
             });
         })
         .catch(err => {

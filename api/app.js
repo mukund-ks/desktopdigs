@@ -4,6 +4,7 @@ const app = Express();
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import imageRoutes from './routes/image.js';
+import userRoutes from './routes/user.js';
 
 try {
     mongoose.connect(`mongodb+srv://mukundKS:${process.env.MONGODB_PASS}@ddcluster.p4gf2tv.mongodb.net/?retryWrites=true&w=majority`)
@@ -24,6 +25,8 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/images', imageRoutes);
+
+app.use('/api/user', userRoutes);
 
 app.use((req, res, next) => {
     const err = new Error('Not Found');
