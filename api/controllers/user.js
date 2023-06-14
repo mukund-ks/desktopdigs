@@ -24,7 +24,7 @@ export const register_user = (req, res, next) => {
                         user.save()
                             .then((registeredUser) => {
                                 const payload = { _id: registeredUser._id, admin: registeredUser.admin || 0 };
-                                const token = jwt.sign(payload, process.env.JWT_SECRET);
+                                const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '5h' });
                                 res.status(201).json({ message: 'User Created', token: token });
                             })
                             .catch(err => {
@@ -41,22 +41,22 @@ export const login_user = (req, res, next) => {
         .exec()
         .then(user => {
             if (user.length < 1) {
-                res.status(401).json({ message: 'User not found' });
+                res.status(404).json({ message: 'User not found' });
             } else {
                 bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                     if (err) {
-                        return res.status(401).json({ message: 'Authorization failed. Check E-mail or Passwrod.' });
+                        return res.status(401).json({ message: 'Authorization failed. Check E-mail or Password.' });
                     }
                     if (result) {
                         const payload = { _id: user[0]._id, admin: user[0].admin || 0 };
-                        const token = jwt.sign(payload, process.env.JWT_SECRET);
+                        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '5h' });
 
                         return res.status(200).header('auth-token', token).json({
                             message: 'Authorization successful',
                             token: token,
                         });
                     }
-                    res.status(401).json({ message: 'Authorization failed. Check E-mail or Passwrod.' });
+                    res.status(401).json({ message: 'Authorization failed. Check E-mail or Password.' });
                 });
             }
         })
@@ -66,7 +66,7 @@ export const login_user = (req, res, next) => {
 };
 
 export const delete_user = (req, res, next) => {
-    User.deleteOne({ _id: req.params.userID })
+    User.findOneAndDelete(req.params.userID)
         .exec()
         .then(() => {
             res.status(200).json({ message: 'User deleted' });
@@ -74,4 +74,52 @@ export const delete_user = (req, res, next) => {
         .catch(err => {
             res.status(500).json({ error: err });
         });
+};
+
+export const get_user = (req, res, next) => {
+    User.findById(req.params.userID)
+        .select('_id username email admin')
+        .exec()
+        .then(user => {
+            if (user) {
+                res.status(200).json({
+                    _id: user._id,
+                    username: user.username,
+                    email: user.email,
+                    admin: user.admin
+                });
+            } else {
+                res.status(404).json({ message: 'User not found' });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ error: err })
+        });
+};
+
+export const get_all_users = (req, res, next) => {
+    User.find()
+        .exec()
+        .then(doc => {
+            if (doc.length == 0) {
+                res.status(404).json({ message: 'No Users' });
+            } else {
+                const response = {
+                    count: doc.length,
+                    users: doc.map(u => {
+                        return {
+                            _id: u._id,
+                            username: u.username,
+                            email: u.email,
+                            password: u.password,
+                            admin: u.admin
+                        };
+                    })
+                };
+                res.status(200).json(response);
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ error: err });
+        })
 };
