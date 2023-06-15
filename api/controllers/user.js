@@ -37,7 +37,7 @@ export const register_user = (req, res, next) => {
 };
 
 export const login_user = (req, res, next) => {
-    User.find({ email: req.body.email })
+    User.find({ $or: [{ email: req.body.email }, { username: req.body.username }] })
         .exec()
         .then(user => {
             if (user.length < 1) {
