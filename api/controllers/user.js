@@ -24,8 +24,15 @@ export const register_user = (req, res, next) => {
                         user.save()
                             .then((registeredUser) => {
                                 const payload = { _id: registeredUser._id, admin: registeredUser.admin || 0 };
-                                const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '5h' });
-                                res.status(201).json({ message: 'User Created', token: token });
+                                const access_token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '5h' });
+                                res.status(201)
+                                    .header('auth-token', access_token)
+                                    .json({
+                                        message: 'User Created',
+                                        username: registeredUser.username,
+                                        admin: registeredUser.admin,
+                                        token: access_token
+                                    });
                             })
                             .catch(err => {
                                 res.status(500).json({ error: err });
@@ -49,12 +56,16 @@ export const login_user = (req, res, next) => {
                     }
                     if (result) {
                         const payload = { _id: user[0]._id, admin: user[0].admin || 0 };
-                        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '5h' });
+                        const access_token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '5h' });
 
-                        return res.status(200).header('auth-token', token).json({
-                            message: 'Authorization successful',
-                            token: token,
-                        });
+                        return res.status(200)
+                            .header('auth-token', access_token)
+                            .json({
+                                message: 'Authorization successful',
+                                username: user[0].username,
+                                admin: user[0].admin,
+                                token: access_token,
+                            });
                     }
                     res.status(401).json({ message: 'Authorization failed. Check E-mail or Password.' });
                 });
@@ -122,4 +133,13 @@ export const get_all_users = (req, res, next) => {
         .catch(err => {
             res.status(500).json({ error: err });
         });
+};
+
+export const get_jwt_user = (req, res, next) => {
+    console.log(req);
+    if (req.user) {
+        res.status(200).json({ User: req.user });
+    } else {
+        res.status(500).json('error')
+    }
 };

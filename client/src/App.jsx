@@ -1,9 +1,8 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer';
-import Nav from './components/Navbar.jsx';
-import Login from './pages/login';
-import Home from './pages/home';
+import Nav from './components/Navbar';
+import Home from './pages/Home';
 import './App.css';
 
 const App = () => {
@@ -13,7 +12,7 @@ const App = () => {
         <Nav />
         <Routes>
           <Route exact path='/' element={<Home />} />
-          <Route exact path='/login' element={<Login />} />
+          {/* <Route exact path='/login' element={<Login />} /> */}
         </Routes>
         <Footer />
       </div>

@@ -5,17 +5,18 @@ import { Typography } from '@material-tailwind/react';
 const Footer = () => {
     return (
         <React.Fragment>
-            <footer className="flex w-full flex-row flex-center gap-y-6 gap-x-12 border-t border-blue-gray-50 py-6 px-6 text-center md:justify-between">
+            <footer className="flex w-full flex-row flex-wrap justify-center gap-y-6 gap-x-12 border-t border-blue-gray-50 py-6 px-6 text-center md:justify-between">
                 <Typography color="blue-gray" className="font-normal">
                     <span className="flex flex-row">
-                    Made with <img src='/heart.png' alt='Heart' className="mx-1"/>
+                        Made with <img src='./heart.png' alt='Heart' className="mx-1" />
                     </span>
                 </Typography>
                 <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
                     <li>
                         <Typography
                             as="a"
-                            href="/"
+                            href="https://github.com/mukund-ks"
+                            target='_blank'
                             color="blue-gray"
                             className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
                         >
@@ -25,7 +26,8 @@ const Footer = () => {
                     <li>
                         <Typography
                             as="a"
-                            href="/"
+                            href="https://github.com/mukund-ks/desktopdigs"
+                            target='_blank'
                             color="blue-gray"
                             className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
                         >
@@ -35,7 +37,7 @@ const Footer = () => {
                     <li>
                         <Typography
                             as="a"
-                            href="#"
+                            href="/"
                             color="blue-gray"
                             className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
                         >
@@ -45,7 +47,8 @@ const Footer = () => {
                     <li>
                         <Typography
                             as="a"
-                            href="#"
+                            href="mailto:sankhyan.mukund@gmail.com"
+                            target='_blank'
                             color="blue-gray"
                             className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
                         >

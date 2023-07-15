@@ -1,9 +1,11 @@
 import Express from 'express';
 const router = Express.Router();
-import { delete_user, get_all_users, get_user, login_user, register_user } from '../controllers/user.js';
+import { delete_user, get_all_users, get_jwt_user, get_user, login_user, register_user } from '../controllers/user.js';
 import { checkAdmin, verifyToken } from '../middlewares/auth.js';
 
 router.get('/', verifyToken, checkAdmin, get_all_users);
+
+router.get('/jwtinfo', verifyToken, get_jwt_user);
 
 router.get('/:userID', verifyToken, get_user);
 
