@@ -136,7 +136,6 @@ export const get_all_users = (req, res, next) => {
 };
 
 export const get_jwt_user = (req, res, next) => {
-    console.log(req);
     if (req.user) {
         res.status(200).json({ User: req.user });
     } else {
