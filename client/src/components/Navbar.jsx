@@ -215,7 +215,7 @@ const Nav = () => {
 
     return (
         <React.Fragment>
-            <Navbar className="sticky top z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
+            <Navbar className="sticky inset-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <Typography
                         as="a"
@@ -227,7 +227,7 @@ const Nav = () => {
                     <div className="m-auto hidden lg:block">{navList}</div>
                     {
                         !(authSuccess) ? (
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-4 ml-1">
                                 <ButtonGroup
                                     variant="text"
                                     size="md"
@@ -301,7 +301,7 @@ const Nav = () => {
                                 </IconButton>
                             </div>
                         ) : (
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-4 ml-0">
                                 <ButtonGroup
                                     variant="text"
                                     size="md"
@@ -309,7 +309,12 @@ const Nav = () => {
                                     ripple={false}
                                 >
                                     <Button className="rounded-l-md">Profile</Button>
-                                    <Button className="rounded-r-md" onClick={handleLogout}>Logout</Button>
+                                    <Button 
+                                        className="rounded-r-md"
+                                        onClick={handleLogout}
+                                    >
+                                        Logout
+                                    </Button>
                                 </ButtonGroup>
                                 <IconButton
                                     variant="text"

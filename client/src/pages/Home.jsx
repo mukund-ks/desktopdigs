@@ -44,7 +44,7 @@ const Home = () => {
 
     function LoadImages() {
         return images.map((img, i) => {
-            return <img src={img} alt={`img-${i}`} key={i} width={1000} />;
+            return <img src={img} alt={`img-${i}`} key={i} width={750} />;
         });
     }
 
