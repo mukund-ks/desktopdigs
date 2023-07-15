@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from '@/api/axios.js';
 import AuthContext from "../context/AuthProvider";
 import {
@@ -42,7 +42,6 @@ const Nav = () => {
         const token = localStorage.getItem('jwt');
         if (!token) {
             axios.defaults.headers.common.Authorization = null;
-            console.log('session expired');
         } else {
             axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 
@@ -60,10 +59,23 @@ const Nav = () => {
                         null;
                     }
                 } catch (err) {
-                    console.log(err);
+                    if (!err?.response){
+                        alert("No Server Response");
+                    } else if(err.response?.status===401){
+                        alert("Invalid Token");
+                    } else if(err.response?.status===403){
+                        alert("Unauthorized");
+                    } else if(err.response?.status===404){
+                        alert("User Not Found");
+                    } else {
+                        alert("Internal Server Error. Try Again Later.");
+                    }
+                    localStorage.clear();
                 }
             })();
+
         }
+        console.log('i fire once');
     }, []);
 
     useEffect(() => {
@@ -176,9 +188,7 @@ const Nav = () => {
                 color="blue-gray"
                 className="p-1 font-normal text-md transition-colors hover:text-blue-500 focus:text-blue-500"
             >
-                <a href="/" className="flex items-center">
-                    Home
-                </a>
+                <Link to='/' className="flex items-center">Home</Link>
             </Typography>
             <Typography
                 as="li"
@@ -186,9 +196,7 @@ const Nav = () => {
                 color="blue-gray"
                 className="p-1 font-normal text-md transition-colors hover:text-blue-500 focus:text-blue-500"
             >
-                <a href="#" className="flex items-center">
-                    Gallery
-                </a>
+                <Link to='/' className="flex items-center">Gallery</Link>
             </Typography>
             <Typography
                 as="li"
@@ -196,9 +204,7 @@ const Nav = () => {
                 color="blue-gray"
                 className="p-1 font-normal text-md transition-colors hover:text-blue-500 focus:text-blue-500"
             >
-                <a href="#" className="flex items-center">
-                    Search
-                </a>
+                <Link to='/' className="flex items-center">Search</Link>
             </Typography>
             <Typography
                 as="li"
@@ -206,9 +212,7 @@ const Nav = () => {
                 color="blue-gray"
                 className="p-1 font-normal text-md transition-colors hover:text-blue-500 focus:text-blue-500"
             >
-                <a href="#" className="flex items-center">
-                    About
-                </a>
+                <Link to='/' className="flex items-center">About</Link>
             </Typography>
         </ul>
     );
@@ -218,7 +222,7 @@ const Nav = () => {
                 <div className="flex items-center justify-between text-blue-gray-900">
                     <Typography
                         as="a"
-                        href="#"
+                        href="/"
                         className="mr-4 cursor-pointer py-1.5 font-medium text-xl"
                     >
                         DesktopDigs
