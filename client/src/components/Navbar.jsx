@@ -58,7 +58,7 @@ const Nav = () => {
                     if (!err?.response) {
                         alert("No Server Response");
                     } else if (err.response?.status === 401) {
-                        alert("Invalid Token");
+                        alert("Invalid Token. Login Again.");
                     } else if (err.response?.status === 403) {
                         alert("Unauthorized");
                     } else if (err.response?.status === 404) {
@@ -182,7 +182,7 @@ const Nav = () => {
                 as="li"
                 variant="small"
                 color="blue-gray"
-                className="p-1 font-normal text-md transition-colors hover:text-blue-500 focus:text-blue-500"
+                className="p-1 font-normal text-md transition-colors text-mywhite hover:text-myGray focus:text-myGray"
             >
                 <Link to='/' className="flex items-center">Home</Link>
             </Typography>
@@ -190,7 +190,7 @@ const Nav = () => {
                 as="li"
                 variant="small"
                 color="blue-gray"
-                className="p-1 font-normal text-md transition-colors hover:text-blue-500 focus:text-blue-500"
+                className="p-1 font-normal text-md transition-colors text-mywhite hover:text-myGray focus:text-myGray"
             >
                 <Link to='/' className="flex items-center">Gallery</Link>
             </Typography>
@@ -198,7 +198,7 @@ const Nav = () => {
                 as="li"
                 variant="small"
                 color="blue-gray"
-                className="p-1 font-normal text-md transition-colors hover:text-blue-500 focus:text-blue-500"
+                className="p-1 font-normal text-md transition-colors text-mywhite hover:text-myGray focus:text-myGray"
             >
                 <Link to='/' className="flex items-center">Search</Link>
             </Typography>
@@ -206,7 +206,7 @@ const Nav = () => {
                 as="li"
                 variant="small"
                 color="blue-gray"
-                className="p-1 font-normal text-md transition-colors hover:text-blue-500 focus:text-blue-500"
+                className="p-1 font-normal text-md transition-colors text-mywhite hover:text-myGray focus:text-myGray"
             >
                 <Link to='/' className="flex items-center">About</Link>
             </Typography>
@@ -215,12 +215,12 @@ const Nav = () => {
 
     return (
         <React.Fragment>
-            <Navbar className="sticky inset-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4">
-                <div className="flex items-center justify-between text-blue-gray-900">
+            <Navbar className="bg-myBlack shadow-md border-none sticky inset-0 z-50 h-max max-w-full rounded-none py-2 px-4 mb-4 lg:px-8 lg:py-4">
+                <div className="flex items-center justify-between text-mywhite">
                     <Typography
                         as="a"
                         href="/"
-                        className="mr-4 cursor-pointer py-1.5 font-medium text-xl"
+                        className="mr-4 cursor-pointer py-1.5 font-medium text-xl text-mywhite"
                     >
                         DesktopDigs
                     </Typography>
@@ -231,6 +231,7 @@ const Nav = () => {
                                 <ButtonGroup
                                     variant="text"
                                     size="md"
+                                    color="white"
                                     className="m-auto hidden lg:inline-block"
                                     ripple={false}
                                 >

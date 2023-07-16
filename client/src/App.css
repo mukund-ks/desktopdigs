@@ -1,12 +1,50 @@
-*{
-  box-sizing: border-box;
+body {
+  --my-black: #1A1A1D;
+  --my-gray: #4E4E50;
+  --my-red1: #6F2232;
+  --my-red2: #950740;
+  --my-red3: #C3073F;
+  --background: var(--my-black);
+  --accent: var(--my-red3);
+  background: var(--background);
 }
 
 #root {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  border: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   margin: 0;
   padding: 0;
   width: 100vw;
   height: 100vh;
 }
 
+Nav{
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  -moz-backdrop-filter: blur(3px);
+}
 
+Footer {
+  background-image: radial-gradient(rgba(0, 0, 0, 0) 1px, var(--background) 1px);
+  background-size: 4px 4px;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  -moz-backdrop-filter: blur(3px);
+}
+
+Footer::before {
+  display: block;
+  position: absolute;
+  opacity: 0.2;
+  top: -1px;
+  left: 0px;
+  right: 0px;
+  height: 1px;
+  background: var(--my-gray);
+}

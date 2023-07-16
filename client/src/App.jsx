@@ -8,7 +8,7 @@ import './App.css';
 const App = () => {
   return (
     <React.Fragment>
-      <div className='flex flex-col h-screen justify-between'>
+      <div className='flex flex-col grow h-screen justify-between'>
         <Nav />
         <Routes>
           <Route exact path='/' element={<Home />} />

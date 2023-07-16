@@ -1,0 +1,50 @@
+body {
+    --my-white: #FAF9F6;
+    --my-black: #1A1A1D;
+    --my-gray: #4E4E50;
+    --my-red1: #6F2232;
+    --my-red2: #950740;
+    --my-red3: #C3073F;
+    background: var(--my-black);
+    --accent: var(--my-red3);
+}
+
+html {
+    scroll-snap-type: y mandatory;
+}
+
+.imgh2 {
+    margin: 0;
+    color: var(--my-red3);
+    left: calc(75% + 120px);
+    font-size: 50px;
+    font-weight: 700;
+    letter-spacing: -3px;
+    line-height: 1.2;
+    position: absolute;
+}
+
+section {
+    perspective: 500px;
+}
+
+.imgdiv {
+    width: 1000px;
+    height: 650px;
+    position: relative;
+    max-height: 90vh;
+    margin: 20px;
+    box-shadow: 0 0 8px 8px white inset;
+    background: transparent;
+    overflow: hidden;
+}
+
+.progress {
+    position: fixed;
+    top:100px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--my-white);
+    z-index: 20;
+}
