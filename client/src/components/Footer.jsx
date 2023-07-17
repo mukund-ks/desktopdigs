@@ -20,7 +20,7 @@ const Footer = () => {
                             as="a"
                             href="https://github.com/mukund-ks"
                             target='_blank'
-                            className="font-normal transition-colors text-mywhite hover:text-myGray focus:text-myGray"
+                            className="font-normal transition-colors text-mywhite hover:text-myGray"
                         >
                             Creator
                         </Typography>
@@ -30,7 +30,7 @@ const Footer = () => {
                             as="a"
                             href="https://github.com/mukund-ks/desktopdigs"
                             target='_blank'
-                            className="font-normal transition-colors text-mywhite hover:text-myGray focus:text-myGray"
+                            className="font-normal transition-colors text-mywhite hover:text-myGray"
                         >
                             Github
                         </Typography>
@@ -40,7 +40,7 @@ const Footer = () => {
                             as="a"
                             href="/"
                             color="blue-gray"
-                            className="font-normal transition-colors text-mywhite hover:text-myGray focus:text-myGray"
+                            className="font-normal transition-colors text-mywhite hover:text-myGray"
                         >
                             Contribute
                         </Typography>
@@ -51,7 +51,7 @@ const Footer = () => {
                             href="mailto:sankhyan.mukund@gmail.com"
                             target='_blank'
                             color="blue-gray"
-                            className="font-normal transition-colors text-mywhite hover:text-myGray focus:text-myGray"
+                            className="font-normal transition-colors text-mywhite hover:text-myGray"
                         >
                             Contact
                         </Typography>

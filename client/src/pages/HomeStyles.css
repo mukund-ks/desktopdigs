@@ -13,38 +13,37 @@ html {
     scroll-snap-type: y mandatory;
 }
 
-.imgh2 {
-    margin: 0;
-    color: var(--my-red3);
-    left: calc(75% + 120px);
-    font-size: 50px;
-    font-weight: 700;
-    letter-spacing: -3px;
-    line-height: 1.2;
-    position: absolute;
-}
-
 section {
     perspective: 500px;
 }
 
-.imgdiv {
-    width: 1000px;
-    height: 650px;
-    position: relative;
-    max-height: 90vh;
-    margin: 20px;
-    box-shadow: 0 0 8px 8px white inset;
-    background: transparent;
-    overflow: hidden;
+.spacer{
+    aspect-ratio: 960/300;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
-.progress {
-    position: fixed;
-    top:100px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--my-white);
-    z-index: 20;
+.layer{
+    background-image: url('../assets/spacer.svg');
+}
+.layer0{
+    background-image: url('../assets/spacer-0.svg');
+}
+
+.layer1{
+    background-image: url('../assets/spacer-1.svg');
+}
+
+.layer2{
+    background-image: url('../assets/spacer-2.svg');
+}
+
+.layer3{
+    background-image: url('../assets/spacer-3.svg');
+}
+
+.layer4{
+    background-image: url('../assets/spacer-4.svg');
 }

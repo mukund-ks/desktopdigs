@@ -39,4 +39,5 @@ body {
   font-family: 'Cabin', sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }

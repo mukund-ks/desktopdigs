@@ -129,3 +129,26 @@ export const get_by_single_tag = (req, res, next) => {
             res.status(500).json({ error: err });
         });
 };
+
+export const get_by_id = (req, res, next) => {
+    Image.findById(req.params.imageID).select('_id imageURL name tags')
+        .exec()
+        .then(doc => {
+            if (doc.length == 0) {
+                res.status(404).json({ message: 'No result for chosen name' })
+            } else {
+                const response = {
+                    image: {
+                        _id: doc._id,
+                        name: doc.name,
+                        imageURL: doc.imageURL,
+                        tags: doc.tags
+                    }
+                };
+                res.status(200).json(response);
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ error: err })
+        });
+}
