@@ -52,7 +52,7 @@ function Image(props) {
     ]
 
     const newid = `section-${props.id}`
-    const spacerClass = `spacer layer${props.id} relative md:bottom-[110px] bottom-[70px]`
+    const spacerClass = `spacer layer${props.id} relative md:bottom-[105px] bottom-[70px]`
 
     return (
         <React.Fragment>
@@ -121,30 +121,72 @@ function Intro() {
 
     return (
         <React.Fragment>
-            <section className='snap-center h-[100vh] px-[12vw] items-start relative flex flex-col justify-center'>
-                <div className='flex flex-col absolute m-5'>
-                    <motion.div
-                        ref={lineRef}
-                        initial={{ opacity: 0, y: '-10px' }}
-                        whileInView={{ opacity: 1, y: '0px' }}
-                        transition={{ ease: easeInOut, duration: 0.8 }}
+            <section className='snap-center h-[100vh] w-[100vw] items-center flex flex-row relative'>
+                <div className='absolute flex flex-row-reverse mx-[7vw] w-[100vw] items-center justify-between'>
+                    <motion.svg
+                        id="visual"
+                        viewBox="-190 -150 480 300"
+                        className='relative mx-[12vw]'
+                        height="960"
+                        width="600"
+                        initial={{
+                            y: -50,
+                            opacity: 0
+                        }}
+                        whileInView={{
+                            y: 0,
+                            opacity: 1
+                        }}
+                        whileHover={{
+                            scale: 1.1,
+                        }}
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlnsXlink="http://www.w3.org/1999/xlink"
+                        version="1.1"
                     >
-                        <Typography
-                            variant='h1'
-                            className='text-myRed3 drop-shadow-xl z-10'>
-                            An In-Game Lens Exhibit
-                        </Typography>
-                    </motion.div>
-                    <motion.div
-                        ref={lineRef}
-                        initial={{ opacity: 0, x: '-10px' }}
-                        whileInView={{ opacity: 1, x: '0px' }}
-                        transition={{ ease: easeIn, duration: 0.9, delay: 0.1 }}
-                    >
-                        <Typography as='p' className='text-myGray z-10 text-lg'>
-                            by Mukund Kumar
-                        </Typography>
-                    </motion.div>
+                        <motion.path
+                            animate={{
+                                d: [
+                                    'M59.3 -67C78.4 -54.7 96.3 -37.4 100.1 -17.4C103.9 2.6 93.5 25.3 80.9 46.3C68.3 67.4 53.5 86.8 31.1 102.3C8.7 117.8 -21.3 129.4 -41.8 119.8C-62.2 110.1 -73.1 79.3 -84.4 52.3C-95.7 25.3 -107.4 2.2 -104.7 -19.3C-101.9 -40.8 -84.7 -60.6 -64.9 -72.8C-45 -84.9 -22.5 -89.3 -1.2 -87.9C20.1 -86.5 40.3 -79.3 59.3 -67',
+                                    'M66.7 -82.2C87.5 -62 106.3 -42 113.5 -17.6C120.6 6.8 116.2 35.6 103.9 62.8C91.6 90 71.4 115.5 47.5 119.4C23.5 123.3 -4.3 105.7 -33 93.9C-61.8 82.1 -91.5 76 -102.8 58.4C-114 40.8 -106.7 11.6 -98.7 -14.6C-90.7 -40.8 -82 -64.1 -65.4 -85C-48.9 -105.9 -24.4 -124.4 -0.7 -123.5C22.9 -122.7 45.9 -102.3 66.7 -82.2',
+                                    "M71.7 -90.1C90.2 -69.9 100.8 -44.7 109.1 -16.4C117.5 11.9 123.7 43.5 111.4 63.8C99 84.1 68.2 93.3 38.3 103.3C8.4 113.4 -20.4 124.4 -40.2 115.1C-59.9 105.8 -70.5 76.4 -82.7 50.2C-94.8 24.1 -108.5 1.3 -109.5 -23.9C-110.6 -49.1 -99 -76.6 -78.6 -96.5C-58.3 -116.5 -29.1 -128.7 -1.3 -127.2C26.6 -125.7 53.1 -110.3 71.7 -90.1",
+                                    "M77.5 -94.7C96.7 -76.2 106 -48.3 107.8 -21.4C109.7 5.5 104.2 31.2 93 56.5C81.8 81.9 64.8 106.7 41.9 114.9C19 123.1 -9.8 114.6 -31.2 100.5C-52.6 86.3 -66.6 66.4 -84.8 44.4C-102.9 22.3 -125.3 -1.9 -121.9 -21.6C-118.6 -41.3 -89.4 -56.6 -64.8 -74.1C-40.2 -91.5 -20.1 -111.3 4.5 -116.7C29.1 -122.1 58.3 -113.1 77.5 -94.7",
+                                    "M63.8 -75.6C79.5 -62.8 87 -39.7 88.6 -17.6C90.2 4.6 85.8 25.8 76.7 46.9C67.6 68 53.8 89 34.9 95.7C16.1 102.4 -7.9 94.9 -28.8 84.8C-49.8 74.8 -67.8 62.1 -87.1 43.2C-106.4 24.3 -127.1 -0.9 -122.8 -21.1C-118.6 -41.3 -89.4 -56.6 -64.8 -67.9C-40.2 -79.2 -20.1 -86.6 2 -88.9C24 -91.3 48 -88.5 63.8 -75.6",
+                                    'M59.3 -67C78.4 -54.7 96.3 -37.4 100.1 -17.4C103.9 2.6 93.5 25.3 80.9 46.3C68.3 67.4 53.5 86.8 31.1 102.3C8.7 117.8 -21.3 129.4 -41.8 119.8C-62.2 110.1 -73.1 79.3 -84.4 52.3C-95.7 25.3 -107.4 2.2 -104.7 -19.3C-101.9 -40.8 -84.7 -60.6 -64.9 -72.8C-45 -84.9 -22.5 -89.3 -1.2 -87.9C20.1 -86.5 40.3 -79.3 59.3 -67',
+                                ]
+                            }}
+                            transition={{
+                                ease: easeInOut,
+                                duration: 6,
+                                repeat: Infinity,
+                            }}
+                            fill='#C3073F'
+                        />
+                    </motion.svg>
+                    <div>
+                        <motion.h1
+                            ref={lineRef}
+                            initial={{ opacity: 0, y: '-10px' }}
+                            whileInView={{ opacity: 1, y: '0px' }}
+                            transition={{ ease: easeInOut, duration: 0.8 }}
+                        >
+                            <Typography
+                                variant='h1'
+                                className='text-myRed3 drop-shadow-xl z-10'>
+                                An In-Game Lens Exhibit
+                            </Typography>
+                        </motion.h1>
+                        <motion.p
+                            ref={lineRef}
+                            initial={{ opacity: 0, x: '-10px' }}
+                            whileInView={{ opacity: 1, x: '0px' }}
+                            transition={{ ease: easeIn, duration: 0.9, delay: 0.1 }}
+                        >
+                            <Typography as='p' className='text-myGray z-10 text-lg'>
+                                by Mukund Kumar
+                            </Typography>
+                        </motion.p>
+                    </div>
                 </div>
                 <motion.div
                     className='fixed bottom-[165px] left-0 right-0 z-20 flex justify-center'
@@ -220,9 +262,16 @@ export default function Home() {
 
     return (
         <React.Fragment>
-            <div>
+            <div className='flex flex-col'>
                 <motion.div
-                    className='fixed top-[100px] left-0 right-0 h-[2px] bg-mywhite z-20 self-center'
+                    className='fixed top-[100px] left-0 right-0 h-[3px] bg-[#bf0041] z-20 self-center'
+                    initial={{
+                        opacity: 0
+                    }}
+                    whileInView={{
+                        opacity: 1
+                    }}
+                    transition={{ ease: easeInOut, duration: 0.9 }}
                     style={{ scaleX }}
                 />
                 <Intro />
