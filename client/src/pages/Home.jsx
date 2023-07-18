@@ -52,14 +52,14 @@ function Image(props) {
     ]
 
     const newid = `section-${props.id}`
-    const spacerClass = `spacer layer${props.id} relative bottom-[110px]`
+    const spacerClass = `spacer layer${props.id} relative md:bottom-[110px] bottom-[70px]`
 
     return (
         <React.Fragment>
             <section className='h-[100vh] px-[12vw] snap-center relative items-center flex flex-col justify-center border-none md:flex-row' id={newid}>
                 <motion.div
                     ref={ref}
-                    className='w-4/5 h-4/6 relative max-h-[90vh] m-[20px] bg-transparent overflow-hidden rounded-3xl shadow-md'
+                    className='md:w-[70vw] lg:w-[65vw] lg:h-[70vh] w-[80vw] h-[50vh] relative max-h-[90vh] md:m-[20px] m-0 bg-transparent overflow-hidden rounded-3xl shadow-md'
                     initial={{ opacity: 0.5, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1.01 }}
                     whileHover={{ scale: 1.02 }}
@@ -75,12 +75,12 @@ function Image(props) {
                                     className='absolute top-0 left-0 bottom-0 right-0 w-full h-full object-fill'
                                 />
                                 <figcaption
-                                    className="absolute bottom-8 left-2/4 flex flex-col w-[calc(100%-4rem)] -translate-x-2/4 justify-between rounded-xl bg-[#28282B]/60 py-4 px-6 shadow-lg shadow-black/5 saturate-200 backdrop-blur-sm"
+                                    className="absolute bottom-8 left-2/4 flex flex-col w-[calc(100%-4rem)] -translate-x-2/4 justify-between rounded-xl bg-[#28282B]/60 py-4 px-6 saturate-200 backdrop-blur-sm opacity-0 hover:opacity-100 lg:opacity-100 transition-opacity"
                                 >
-                                    <Typography variant="h5" className='text-black font-semibold'>
+                                    <Typography variant="h5" className='text-black font-semibold text-[15px] lg:text-[20px]'>
                                         {captionObj[props.id].title}
                                     </Typography>
-                                    <Typography className="mt-2 font-normal text-[#D3D3D3]">
+                                    <Typography className="mt-2 font-normal text-[#D3D3D3] text-[13px] lg:text-[20px]">
                                         {captionObj[props.id].caption}
                                     </Typography>
                                 </figcaption>
@@ -98,7 +98,7 @@ function Image(props) {
                     }
                 </motion.div>
                 <motion.h2
-                    className='m-0 text-myRed3 text-[50px] leading-[1.2] font-bold tracking-[-3px] absolute left-[calc(70%+145px)] drop-shadow-lg z-10'
+                    className='m-0 text-myRed3 lg:text-[60px] text-[30px] leading-[1.2] font-bold tracking-[-3px] absolute xl:left-[calc(64.2%+250px)] left-[calc(75%+25px)] drop-shadow-lg z-10'
                     style={{ y }}
                 >
                     {`#00${props.id + 1}`}
@@ -122,7 +122,7 @@ function Intro() {
     return (
         <React.Fragment>
             <section className='snap-center h-[100vh] px-[12vw] items-start relative flex flex-col justify-center'>
-                <div className='flex flex-col absolute'>
+                <div className='flex flex-col absolute m-5'>
                     <motion.div
                         ref={lineRef}
                         initial={{ opacity: 0, y: '-10px' }}
@@ -149,8 +149,9 @@ function Intro() {
                 <motion.div
                     className='fixed bottom-[165px] left-0 right-0 z-20 flex justify-center'
                     ref={lineRef}
-                    initial={{ y: 1 }}
-                    whileInView={{ y: [1, 10, 1] }}
+                    animate={{
+                        y: [1, 10, 1]
+                    }}
                     transition={{ ease: easeInOut, repeat: Infinity, repeatDelay: 5, duration: 0.5 }}
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-6 h-6 fill-mywhite">
@@ -159,7 +160,7 @@ function Intro() {
                 </motion.div>
             </section>
             <motion.div
-                className='spacer layer relative bottom-[160px]'
+                className='spacer layer relative md:bottom-[160px] bottom-[90px]'
                 initial={{ opacity: 0, y: -10 }}
                 whileInView={{ opacity: 1, y: 5 }}
                 whileHover={{ scale: 1.03 }}
