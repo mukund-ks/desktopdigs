@@ -306,6 +306,7 @@ const Nav = () => {
                                 <ButtonGroup
                                     variant="text"
                                     size="md"
+                                    color="white"
                                     className="m-auto hidden lg:inline-block"
                                     ripple={false}
                                 >
@@ -367,6 +368,7 @@ const Nav = () => {
                                     size="sm"
                                     fullWidth
                                     className="mb-2"
+                                    color="white"
                                     ripple={false}
                                     onClick={handleLoginDialog}
                                 >
@@ -377,6 +379,7 @@ const Nav = () => {
                                     size="sm"
                                     fullWidth
                                     className="mb-2"
+                                    color="white"
                                     ripple={false}
                                     onClick={handleRegisterDialog}
                                 >
@@ -390,6 +393,7 @@ const Nav = () => {
                                     size="sm"
                                     fullWidth
                                     className="mb-2"
+                                    color="white"
                                     ripple={false}
                                 >
                                     <span>Profile</span>
@@ -400,6 +404,7 @@ const Nav = () => {
                                     fullWidth
                                     className="mb-2"
                                     ripple={false}
+                                    color="white"
                                     onClick={handleLogout}
                                 >
                                     <span>Logout</span>
