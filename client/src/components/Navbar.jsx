@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from 'react-router-dom';
-import axios from '@/api/axios.js';
 import AuthContext from "../context/AuthProvider";
 import {
     Navbar,
@@ -17,65 +16,12 @@ const Nav = () => {
     const [openNav, setOpenNav] = useState(false);
     const [loginDialog, setLoginDialog] = useState(false);
     const [registerDialog, setRegisterDialog] = useState(false);
-    const [errMsg, setErrMsg] = useState('');
-    const [authSuccess, setAuthSuccess] = useState(false);
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [pwd, setPwd] = useState('');
-    const [currUser, setCurrUser] = useState('');
-    const [admin, setAdmin] = useState(false);
-    const { setAuth } = useContext(AuthContext);
+    const { auth, setAuth, setErrMsg, authSuccess, setAuthSuccess } = useContext(AuthContext);
 
-    const LOGIN_URL = '/api/user/login';
-    const REGISTER_URL = '/api/user/register';
-    const JWT_URL = '/api/user/jwtinfo';
 
     useEffect(() => {
         window.addEventListener('resize', () => { window.innerWidth >= 960 && setOpenNav(false) });
     }, []);
-
-    useEffect(() => {
-        const token = localStorage.getItem('jwt');
-        if (!token) {
-            axios.defaults.headers.common.Authorization = null;
-        } else {
-            axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-
-            (async function getTokenInfo() {
-                try {
-                    const res = await axios.get(JWT_URL, { headers: { 'Content-Type': 'application/json' } });
-                    const userID = res?.data?.User?._id;
-
-                    try {
-                        const res2 = await axios.get(`/api/user/${userID}`, { headers: { 'Content-Type': 'application/json' } });
-                        setCurrUser(() => res2?.data?.username);
-                        setAdmin(() => res2?.data?.admin);
-                        setAuthSuccess(true);
-                    } finally {
-                        null;
-                    }
-                } catch (err) {
-                    if (!err?.response) {
-                        alert("No Server Response");
-                    } else if (err.response?.status === 401) {
-                        alert("Invalid Token. Login Again.");
-                    } else if (err.response?.status === 403) {
-                        alert("Unauthorized");
-                    } else if (err.response?.status === 404) {
-                        alert("User Not Found");
-                    } else {
-                        alert("Internal Server Error. Try Again Later.");
-                    }
-                    localStorage.clear();
-                }
-            })();
-
-        }
-    }, []);
-
-    useEffect(() => {
-        setErrMsg('');
-    }, [email, pwd]);
 
     const handleLoginDialog = () => {
         setLoginDialog((cur) => !cur);
@@ -86,95 +32,11 @@ const Nav = () => {
         setErrMsg('')
     };
 
-    const handleLogin = async (e) => {
-        e.preventDefault()
-        try {
-            const res = await axios.post(LOGIN_URL,
-                JSON.stringify(
-                    {
-                        email: email,
-                        password: pwd
-                    }
-                ),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
-            const token = res?.data?.token;
-            const admin = res?.data?.admin;
-            const username = res?.data?.username
-            setCurrUser(() => username);
-            setAdmin(() => admin);
-
-            localStorage.setItem('jwt', token);
-
-            setAuth({ username, admin, token });
-            setEmail('');
-            setPwd('');
-            setAuthSuccess(true);
-            setLoginDialog(false);
-        } catch (error) {
-            if (!error?.response) {
-                setErrMsg("No Server Response");
-            } else if (error.response?.status === 404) {
-                setErrMsg('User Not Found');
-            } else if (error.response?.status === 401) {
-                setErrMsg('Invalid Credentials');
-            } else {
-                setErrMsg("Login Failed");
-            }
-        }
-    };
-
-    const handleRegister = async (e) => {
-        e.preventDefault()
-        try {
-            const res = await axios.post(REGISTER_URL,
-                JSON.stringify(
-                    {
-                        username: username,
-                        email: email,
-                        password: pwd
-                    }
-                ),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
-            );
-            const token = res?.data?.token;
-            const admin = res?.data?.admin;
-            setCurrUser(() => username);
-            setAdmin(() => admin);
-
-            localStorage.setItem('jwt', token);
-
-            setAuth({ username, admin, token });
-            setEmail('');
-            setPwd('');
-            setAuthSuccess(true);
-            setRegisterDialog(false);
-        } catch (error) {
-            if (!error?.response) {
-                setErrMsg("No Server Response");
-            } else if (error.response?.status === 409) {
-                setErrMsg('Email or Username already exist');
-            } else {
-                setErrMsg("Registration Failed");
-            }
-        }
-    };
-
     const handleLogout = () => {
         localStorage.clear();
         setAuth({});
         setAuthSuccess(false)
-        setCurrUser('')
-        setAdmin(false);
     };
-    console.log(currUser);
-    console.log(admin);
 
     const navList = (
         <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -213,6 +75,8 @@ const Nav = () => {
         </ul>
     );
 
+    console.log(auth);
+
     return (
         <React.Fragment>
             <Navbar className="bg-myBlack shadow-md border-none sticky inset-0 z-50 h-max max-w-full rounded-none py-2 px-4 mb-4 lg:px-8 lg:py-4">
@@ -243,10 +107,6 @@ const Nav = () => {
                                         loginDialog={loginDialog}
                                         handleLoginDialog={handleLoginDialog}
                                         handleRegisterDialog={handleRegisterDialog}
-                                        setEmail={setEmail}
-                                        setPwd={setPwd}
-                                        handleLogin={handleLogin}
-                                        errMsg={errMsg}
                                     />
                                     {/* Register */}
                                     <Button onClick={handleRegisterDialog} className="rounded-r-md">
@@ -256,11 +116,6 @@ const Nav = () => {
                                         registerDialog={registerDialog}
                                         handleLoginDialog={handleLoginDialog}
                                         handleRegisterDialog={handleRegisterDialog}
-                                        handleRegister={handleRegister}
-                                        setUsername={setUsername}
-                                        setEmail={setEmail}
-                                        setPwd={setPwd}
-                                        errMsg={errMsg}
                                     />
                                 </ButtonGroup>
                                 <IconButton
@@ -311,7 +166,7 @@ const Nav = () => {
                                     ripple={false}
                                 >
                                     <Button className="rounded-l-md">Profile</Button>
-                                    <Button 
+                                    <Button
                                         className="rounded-r-md"
                                         onClick={handleLogout}
                                     >

@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import axios from '@/api/axios.js';
+import AuthContext from "../context/AuthProvider";
 import PropTypes from 'prop-types';
 import {
     Typography,
@@ -15,13 +17,65 @@ LoginDialog.propTypes = {
     loginDialog: PropTypes.bool,
     handleLoginDialog: PropTypes.func,
     handleRegisterDialog: PropTypes.func,
-    setEmail: PropTypes.func,
-    setPwd: PropTypes.func,
-    handleLogin: PropTypes.func,
-    errMsg: PropTypes.string
 };
 
+const LOGIN_URL = '/api/user/login';
+
 export default function LoginDialog(props) {
+    const {
+        setAuth,
+        email,
+        setEmail,
+        pwd,
+        setPwd,
+        setAuthSuccess,
+        errMsg,
+        setErrMsg,
+    } = useContext(AuthContext);
+
+    useEffect(() => {
+        setErrMsg('');
+    }, [email, pwd]);
+
+    const handleLogin = async (e) => {
+        e.preventDefault()
+        try {
+            const res = await axios.post(LOGIN_URL,
+                JSON.stringify(
+                    {
+                        email: email,
+                        password: pwd
+                    }
+                ),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            );
+            const token = res?.data?.token;
+            const admin = res?.data?.admin;
+            const username = res?.data?.username
+
+            localStorage.setItem('jwt', token);
+
+            setAuth({ username, admin, token });
+            setEmail('');
+            setPwd('');
+            setAuthSuccess(true);
+            props.handleLoginDialog();
+        } catch (error) {
+            if (!error?.response) {
+                setErrMsg("No Server Response");
+            } else if (error.response?.status === 404) {
+                setErrMsg('User Not Found');
+            } else if (error.response?.status === 401) {
+                setErrMsg('Invalid Credentials');
+            } else {
+                setErrMsg("Login Failed");
+            }
+        }
+    };
+
     return (
         <React.Fragment>
             <Dialog
@@ -49,7 +103,7 @@ export default function LoginDialog(props) {
                             className="text-mywhite"
                             autoComplete="off"
                             required={true}
-                            onChange={(e) => props.setEmail(e.target.value)}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                         <Input
                             variant='standard'
@@ -59,13 +113,13 @@ export default function LoginDialog(props) {
                             color="gray"
                             className="text-mywhite"
                             required={true}
-                            onChange={(e) => props.setPwd(e.target.value)}
+                            onChange={(e) => setPwd(e.target.value)}
                         />
                     </CardBody>
                     <CardFooter className="pt-0">
                         <Button
                             variant="gradient"
-                            onClick={props.handleLogin}
+                            onClick={handleLogin}
                             fullWidth={true}
                             color="white"
                             className="mb-4"
@@ -73,7 +127,7 @@ export default function LoginDialog(props) {
                             Login
                         </Button>
                         {
-                            props.errMsg &&
+                            errMsg &&
                             <Alert
                                 className="bg-myRed3"
                                 icon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -81,7 +135,7 @@ export default function LoginDialog(props) {
                                 </svg>
                                 }
                             >
-                                {props.errMsg}
+                                {errMsg}
                             </Alert>
                         }
                         <Typography className='mt-4 text-myGray'>
@@ -90,12 +144,12 @@ export default function LoginDialog(props) {
                                 onClick={() => { props.handleLoginDialog(); props.handleRegisterDialog(); }}
                                 className='font-medium text-myRed1 transition-colors hover:text-myRed3 cursor-pointer'
                             >
-                            Register
-                        </a>
-                    </Typography>
-                </CardFooter>
-            </Card>
-        </Dialog>
+                                Register
+                            </a>
+                        </Typography>
+                    </CardFooter>
+                </Card>
+            </Dialog>
         </React.Fragment >
     );
 }

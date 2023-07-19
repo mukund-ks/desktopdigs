@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import axios from '@/api/axios.js';
+import AuthContext from "../context/AuthProvider";
 import PropTypes from 'prop-types';
 import {
     Typography,
@@ -15,14 +17,66 @@ RegisterDialog.propTypes = {
     registerDialog: PropTypes.bool,
     handleLoginDialog: PropTypes.func,
     handleRegisterDialog: PropTypes.func,
-    setUsername: PropTypes.func,
-    setEmail: PropTypes.func,
-    setPwd: PropTypes.func,
-    handleRegister: PropTypes.func,
-    errMsg: PropTypes.string
 };
 
+const REGISTER_URL = '/api/user/register';
+
 export default function RegisterDialog(props) {
+    const {
+        setAuth,
+        email,
+        setEmail,
+        pwd,
+        setPwd,
+        setAuthSuccess,
+        errMsg,
+        setErrMsg,
+        username,
+        setUsername
+    } = useContext(AuthContext);
+
+    useEffect(() => {
+        setErrMsg('');
+    }, [email, pwd]);
+
+    const handleRegister = async (e) => {
+        e.preventDefault()
+        try {
+            const res = await axios.post(REGISTER_URL,
+                JSON.stringify(
+                    {
+                        username: username,
+                        email: email,
+                        password: pwd
+                    }
+                ),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            );
+            const token = res?.data?.token;
+            const admin = res?.data?.admin;
+
+            localStorage.setItem('jwt', token);
+
+            setAuth({ username, admin, token });
+            setEmail('');
+            setPwd('');
+            setUsername('');
+            setAuthSuccess(true);
+            props.handleLoginDialog(false);
+        } catch (error) {
+            if (!error?.response) {
+                setErrMsg("No Server Response");
+            } else if (error.response?.status === 409) {
+                setErrMsg('Email or Username already exist');
+            } else {
+                setErrMsg("Registration Failed");
+            }
+        }
+    };
+
     return (
         <React.Fragment>
             <Dialog
@@ -49,7 +103,7 @@ export default function RegisterDialog(props) {
                             autoComplete="off"
                             color="gray"
                             className="text-mywhite"
-                            onChange={e => props.setUsername(e.target.value)}
+                            onChange={e => setUsername(e.target.value)}
                             required={true}
                         />
                         <Input
@@ -60,7 +114,7 @@ export default function RegisterDialog(props) {
                             color="gray"
                             className="text-mywhite"
                             autoComplete="off"
-                            onChange={e => props.setEmail(e.target.value)}
+                            onChange={e => setEmail(e.target.value)}
                             required={true}
                         />
                         <Input
@@ -71,14 +125,14 @@ export default function RegisterDialog(props) {
                             color="gray"
                             className="text-mywhite"
                             autoComplete="off"
-                            onChange={e => props.setPwd(e.target.value)}
+                            onChange={e => setPwd(e.target.value)}
                             required={true}
                         />
                     </CardBody>
                     <CardFooter className="pt-0">
                         <Button
                             variant="gradient"
-                            onClick={props.handleRegister}
+                            onClick={handleRegister}
                             fullWidth={true}
                             color="white"
                             className="mb-4"
@@ -86,7 +140,7 @@ export default function RegisterDialog(props) {
                             Register
                         </Button>
                         {
-                            props.errMsg &&
+                            errMsg &&
                             <Alert
                                 className="bg-myRed3"
                                 icon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -94,7 +148,7 @@ export default function RegisterDialog(props) {
                                 </svg>
                                 }
                             >
-                                {props.errMsg}
+                                {errMsg}
                             </Alert>
                         }
                         <Typography className='mt-4 text-myGray'>
