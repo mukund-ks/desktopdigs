@@ -164,7 +164,7 @@ function Intro() {
                         />
                     </motion.svg>
                     <div>
-                        <motion.h1
+                        <motion.div
                             ref={lineRef}
                             initial={{ opacity: 0, y: '-10px' }}
                             whileInView={{ opacity: 1, y: '0px' }}
@@ -175,17 +175,17 @@ function Intro() {
                                 className='text-myRed3 drop-shadow-xl z-10'>
                                 An In-Game Lens Exhibit
                             </Typography>
-                        </motion.h1>
-                        <motion.p
+                        </motion.div>
+                        <motion.div
                             ref={lineRef}
                             initial={{ opacity: 0, x: '-10px' }}
                             whileInView={{ opacity: 1, x: '0px' }}
                             transition={{ ease: easeIn, duration: 0.9, delay: 0.1 }}
                         >
-                            <Typography as='p' className='text-myGray z-10 text-lg'>
+                            <Typography variant='lead' className='text-myGray z-10 text-lg'>
                                 by Mukund Kumar
                             </Typography>
-                        </motion.p>
+                        </motion.div>
                     </div>
                 </div>
                 <motion.div
@@ -211,7 +211,6 @@ function Intro() {
         </React.Fragment>
     );
 }
-
 
 
 export default function Home() {
