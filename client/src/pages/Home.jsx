@@ -122,7 +122,7 @@ function Intro() {
     return (
         <React.Fragment>
             <section className='snap-center h-[100vh] w-[100vw] items-center flex flex-row relative'>
-                <div className='absolute flex flex-row-reverse mx-[7vw] w-[100vw] items-center justify-between'>
+                <div className='absolute flex flex-row-reverse mx-1 w-[100%] items-center justify-between'>
                     <motion.svg
                         id="visual"
                         viewBox="-190 -150 480 300"
@@ -163,7 +163,7 @@ function Intro() {
                             fill='#C3073F'
                         />
                     </motion.svg>
-                    <div>
+                    <div className='pl-16'>
                         <motion.div
                             ref={lineRef}
                             initial={{ opacity: 0, y: '-10px' }}
