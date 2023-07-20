@@ -47,7 +47,7 @@ function Image(props) {
         },
         {
             title: 'Embracing the Legend: Toyota Supra',
-            caption: 'The Toyota Supra, a legendary symbol of power and performance, has left an indelible mark on the road. With its iconic design and exhilarating driving dynamics, the Supra embodies a heritage that fuels the dreams of driving enthusiasts worldwide.',
+            caption: 'A legendary symbol of power and performance, has left an indelible mark on the road. With its iconic design and exhilarating driving dynamics, the Supra embodies a heritage that fuels the dreams of driving enthusiasts worldwide.',
         },
     ]
 
@@ -77,10 +77,10 @@ function Image(props) {
                                 <figcaption
                                     className="absolute bottom-8 left-2/4 flex flex-col w-[calc(100%-4rem)] -translate-x-2/4 justify-between rounded-xl bg-[#28282B]/60 py-4 px-6 saturate-200 backdrop-blur-sm opacity-0 hover:opacity-100 lg:opacity-100 transition-opacity"
                                 >
-                                    <Typography variant="h5" className='text-black font-semibold text-[15px] lg:text-[20px]'>
+                                    <Typography variant="h5" className='text-black font-semibold text-[15px] lg:text-[20px] leading-normal tracking-wide'>
                                         {captionObj[props.id].title}
                                     </Typography>
-                                    <Typography className="mt-2 font-normal text-[#D3D3D3] text-[13px] lg:text-[20px]">
+                                    <Typography className="mt-2 font-normal text-[#D3D3D3] text-[13px] lg:text-[20px] leading-normal tracking-wide">
                                         {captionObj[props.id].caption}
                                     </Typography>
                                 </figcaption>
@@ -157,7 +157,7 @@ function Intro() {
                             }}
                             transition={{
                                 ease: easeInOut,
-                                duration: 6,
+                                duration: 10,
                                 repeat: Infinity,
                             }}
                             fill='#C3073F'
@@ -172,7 +172,7 @@ function Intro() {
                         >
                             <Typography
                                 variant='h1'
-                                className='text-myRed3 drop-shadow-xl z-10'>
+                                className='text-myRed3 drop-shadow-xl z-10 tracking-wide'>
                                 An In-Game Lens Exhibit
                             </Typography>
                         </motion.div>
@@ -182,7 +182,7 @@ function Intro() {
                             whileInView={{ opacity: 1, x: '0px' }}
                             transition={{ ease: easeIn, duration: 0.9, delay: 0.1 }}
                         >
-                            <Typography variant='lead' className='text-myGray z-10 text-lg'>
+                            <Typography variant='lead' className='text-myGray z-10 text-lg tracking-wide'>
                                 by Mukund Kumar
                             </Typography>
                         </motion.div>
