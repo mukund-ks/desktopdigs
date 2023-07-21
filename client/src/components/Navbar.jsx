@@ -54,7 +54,7 @@ const Nav = () => {
                 color="blue-gray"
                 className="p-1 font-normal text-md transition-colors text-mywhite hover:text-myGray focus:text-myGray"
             >
-                <Link to='/' className="flex items-center">Gallery</Link>
+                <Link to='/gallery' className="flex items-center">Gallery</Link>
             </Typography>
             <Typography
                 as="li"

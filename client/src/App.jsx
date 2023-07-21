@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer';
 import Nav from './components/Navbar';
 import Home from './pages/Home';
+import Gallery from './pages/Gallery';
 import './App.css';
 
 const App = () => {
@@ -12,6 +13,7 @@ const App = () => {
         <Nav />
         <Routes>
           <Route exact path='/' element={<Home />} />
+          <Route exact path='/gallery' element={<Gallery />} />
         </Routes>
         <Footer />
       </div>
