@@ -7,6 +7,7 @@ import './GalleryStyles.css';
 
 Images.propTypes = {
     imageURL: PropTypes.string,
+    tags: PropTypes.array,
     id: PropTypes.number,
     currentPage: PropTypes.number,
 };
@@ -19,8 +20,15 @@ function Images(props) {
                 key={props.imageURL}
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
+                whileHover={{ scale: 1.02 }}
                 transition={{ ease: easeInOut, duration: 0.7 }}
             >
+                <Typography
+                    variant='p'
+                    className='text-mywhite text-sm absolute bg-myBlack/60 backdrop-blur-md p-1 rounded-br-md'
+                >
+                    #{props.tags[0]}{' '}#{props.tags[1]}
+                </Typography>
                 <img
                     src={props.imageURL}
                     id={props.id}
@@ -94,7 +102,7 @@ export default function Gallery() {
                     whileInView={{ opacity: 1, x: '0px' }}
                     transition={{ ease: easeInOut, duration: 0.8 }}
                 >
-                    <Typography variant='lead' className='text-myGray'>all the {imgsCount} images.</Typography>
+                    <Typography variant='lead' className='text-myGray'>the whole collection.</Typography>
                 </motion.div>
                 <motion.div
                     className='fixed bottom-[125px] left-0 right-0 z-20 flex justify-center'
@@ -119,11 +127,12 @@ export default function Gallery() {
                 {
                     (images.length > 0) ? (
                         <React.Fragment>
-                            <div className="grid grid-cols-3 gap-3 mx-[20px] mb-[20px]">
+                            <div className="grid grid-cols-3 gap-4 mx-[20px] mb-[20px]">
                                 {
                                     currentImgs.map((img, id) => (
                                         <Images
                                             imageURL={img.imageURL}
+                                            tags={img.tags}
                                             id={id}
                                             key={id}
                                             currentPage={currentPage}
