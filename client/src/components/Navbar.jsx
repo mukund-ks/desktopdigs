@@ -79,7 +79,7 @@ const Nav = () => {
 
     return (
         <React.Fragment>
-            <Navbar className="bg-myBlack shadow-md border-none sticky inset-0 z-50 h-max max-w-full rounded-none py-2 px-4 mb-4 lg:px-8 lg:py-4">
+            <Navbar className="bg-myBlack shadow-md border-none fixed top-0 z-50 h-max max-w-full rounded-none py-2 px-4 mb-4 lg:px-8 lg:py-4">
                 <div className="flex items-center justify-between text-mywhite">
                     <Typography
                         as="a"

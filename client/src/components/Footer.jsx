@@ -5,7 +5,7 @@ import { Typography } from '@material-tailwind/react';
 const Footer = () => {
     return (
         <React.Fragment>
-            <footer className="sticky inset-0 z-50 flex w-full flex-row flex-wrap justify-center gap-y-6 gap-x-12 py-6 px-6 mt-6 text-center md:justify-between">
+            <footer className="fixed bottom-0 z-50 flex w-full flex-row flex-wrap justify-center gap-y-6 gap-x-12 py-6 px-6 mt-6 text-center md:justify-between">
                 <Typography color="blue-gray" className="font-normal">
                     <span className="flex flex-row text-mywhite">
                         Made with
