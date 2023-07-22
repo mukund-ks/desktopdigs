@@ -1,3 +1,34 @@
 html {
     scroll-snap-type: y mandatory;
 }
+
+.spacer{
+    aspect-ratio: 960/300;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.layer{
+    background-image: url('../assets/spacer.svg');
+}
+.layer0{
+    background-image: url('../assets/spacer-0.svg');
+}
+
+.layer1{
+    background-image: url('../assets/spacer-1.svg');
+}
+
+.layer2{
+    background-image: url('../assets/spacer-2.svg');
+}
+
+.layer3{
+    background-image: url('../assets/spacer-3.svg');
+}
+
+.layer4{
+    background-image: url('../assets/spacer-4.svg');
+}
