@@ -24,8 +24,8 @@ function Images(props) {
                 transition={{ ease: easeInOut, duration: 0.7 }}
             >
                 <Typography
-                    variant='p'
-                    className='text-mywhite text-sm absolute bg-myBlack/60 backdrop-blur-md p-1 rounded-br-md'
+                    variant='paragraph'
+                    className='text-mywhite text-sm absolute bg-myBlack/60 backdrop-blur-md p-1 rounded-br-md opacity-0 md:opacity-100'
                 >
                     #{props.tags[0]}{' '}#{props.tags[1]}
                 </Typography>
@@ -89,7 +89,7 @@ export default function Gallery() {
 
     return (
         <div className="flex flex-col absolute">
-            <section className="h-[100vh] w-[100vw] items-center flex flex-col justify-center snap-center gap-1" id="1">
+            <section className="h-[100vh] w-[100vw] items-center flex flex-col justify-center md:snap-center gap-1" id="1">
                 <motion.div
                     initial={{ opacity: 0, y: '10px' }}
                     whileInView={{ opacity: 1, y: '0px' }}
@@ -123,11 +123,11 @@ export default function Gallery() {
                 whileHover={{ scale: 1.03 }}
                 transition={{ ease: easeInOut, duration: 0.9 }}
             ></motion.div>
-            <section className="mb-20 flex flex-col items-center snap-center justify-center h-[100vh] w-[100vw]">
+            <section className="lg:mb-20 flex flex-col items-center md:snap-center justify-center lg:h-[100vh] lg:w-[100vw] h-2/4 ">
                 {
                     (images.length > 0) ? (
                         <React.Fragment>
-                            <div className="grid grid-cols-3 gap-4 mx-[20px] mb-[20px]">
+                            <div className="grid md:grid-cols-3 grid-cols-1 gap-2 lg:gap-4 mx-[20px] mb-[20px]">
                                 {
                                     currentImgs.map((img, id) => (
                                         <Images
@@ -153,7 +153,7 @@ export default function Gallery() {
                 }
                 {
                     images.length > 0 && (
-                        <div className="flex items-center gap-8">
+                        <div className="flex items-center gap-8 z-30">
                             <IconButton
                                 size="sm"
                                 variant="text"
@@ -186,7 +186,7 @@ export default function Gallery() {
                 }
             </section>
             <motion.div
-                className='spacer layer0 relative md:bottom-[70px] bottom-[90px]'
+                className='spacer layer0 relative lg:bottom-[180px] bottom-[-150px]'
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: -5 }}
                 whileHover={{ scale: 1.03 }}
