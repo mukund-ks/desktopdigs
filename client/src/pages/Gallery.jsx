@@ -20,7 +20,7 @@ function Images(props) {
                 key={props.imageURL}
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.03 }}
                 transition={{ ease: easeInOut, duration: 0.7 }}
             >
                 <Typography
@@ -186,7 +186,7 @@ export default function Gallery() {
                 }
             </section>
             <motion.div
-                className='spacer layer0 relative lg:bottom-[180px] bottom-[-150px]'
+                className='spacer layer0 relative lg:bottom-[150px] bottom-[-150px]'
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: -5 }}
                 whileHover={{ scale: 1.03 }}
