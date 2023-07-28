@@ -34,23 +34,40 @@ export default function Search() {
     console.log(brand);
     return (
         <div className="flex flex-col absolute">
-            <section className="h-[100vh] w-[100vw] items-center flex flex-col justify-around md:snap-center gap-1">
-                <Typography variant="h1" className="text-mywhite">Search Page</Typography>
+            <section className="h-[100vh] w-[100vw] items-center flex flex-col justify-center md:snap-center gap-y-40">
+                <div>
+                    <Typography variant="h1" className="text-myRed3">Search Page</Typography>
+                    <Typography variant="lead" className="text-myGray">tag and discover.</Typography>
+                </div>
                 <div className="flex flex-col gap-4">
-                    <div className="flex flex-row items-center">
-                        <Typography variant="paragraph" className="text-mywhite text-lg">Select Game</Typography>
+                    <div className="flex flex-row items-center justify-center">
+                        <Typography
+                            variant="paragraph"
+                            className="text-myRed3 text-lg font-medium"
+                        >
+                            Select Game
+                        </Typography>
                         {
-                            gameList.map((g, id) => (
-                                <ShowTags setTag={setGame} checked={game} label={g} value={g} key={id} />
-                            ))
+                            gameList.map((g, id) => {
+                                return (
+                                    <ShowTags setTag={setGame} checked={game} label={g} value={g} key={id} />
+                                );
+                            })
                         }
                     </div>
-                    <div className="flex flex-row items-center">
-                        <Typography variant="paragraph" className="text-mywhite text-lg">Select Brand</Typography>
+                    <div className="flex flex-row items-center justify-center">
+                        <Typography
+                            variant="paragraph"
+                            className="text-myRed3 text-lg font-medium"
+                        >
+                            Select Brand
+                        </Typography>
                         {
-                            brandList.map((b, id) => (
-                                <ShowTags setTag={setBrand} checked={brand} label={b} value={b} key={id} />
-                            ))
+                            brandList.map((b, id) => {
+                                return (
+                                    <ShowTags setTag={setBrand} checked={brand} label={b} value={b} key={id} />
+                                );
+                            })
                         }
                     </div>
                 </div>
