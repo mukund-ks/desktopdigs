@@ -62,7 +62,7 @@ const Nav = () => {
                 color="blue-gray"
                 className="p-1 font-normal text-md transition-colors text-mywhite hover:text-myGray focus:text-myGray"
             >
-                <Link to='/' className="flex items-center">Search</Link>
+                <Link to='/search' className="flex items-center">Search</Link>
             </Typography>
             <Typography
                 as="li"
