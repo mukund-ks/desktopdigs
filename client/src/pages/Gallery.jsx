@@ -102,7 +102,7 @@ export default function Gallery() {
                     whileInView={{ opacity: 1, x: '0px' }}
                     transition={{ ease: easeInOut, duration: 0.8 }}
                 >
-                    <Typography variant='lead' className='text-myGray'>the whole collection.</Typography>
+                    <Typography variant='lead' className='text-myGray'>explore the collection.</Typography>
                 </motion.div>
                 <motion.div
                     className='fixed bottom-[125px] left-0 right-0 z-20 flex justify-center'
