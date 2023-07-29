@@ -11,7 +11,7 @@ import {
 
 router.get('/all', get_all_images);
 
-router.get('/allTags', get_all_tags);
+router.get('/all-tags', get_all_tags);
 
 router.get('/:imageID', get_by_id);
 
