@@ -1,14 +1,17 @@
 import Express from 'express';
 const router = Express.Router();
-import { 
-    get_all_images, 
-    add_image, 
-    get_by_tags, 
-    get_by_single_tag, 
-    get_by_id 
+import {
+    get_all_images,
+    add_image,
+    get_by_tags,
+    get_by_single_tag,
+    get_by_id,
+    get_all_tags
 } from '../controllers/image.js';
 
 router.get('/all', get_all_images);
+
+router.get('/allTags', get_all_tags);
 
 router.get('/:imageID', get_by_id);
 

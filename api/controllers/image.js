@@ -152,3 +152,26 @@ export const get_by_id = (req, res, next) => {
             res.status(500).json({ error: err })
         });
 }
+
+export const get_all_tags = (req, res, next) => {
+    Image.distinct("tags")
+        .exec()
+        .then(doc => {
+            if (doc.length == 0) {
+                res.status(404).json({ message: "Could not retrieve results" })
+            } else {
+                const gameFilter = ["FH4", "FH5"];
+                const games = [];
+                const brands = [];
+
+                doc.forEach(element => {
+                    (gameFilter.includes(element) ? games : brands).push(element);
+                });
+
+                res.status(200).json({ gameTags: games, brandTags: brands });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ error: err })
+        });
+}
