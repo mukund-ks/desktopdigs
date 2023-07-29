@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "@/api/axios.js";
 import { Typography } from "@material-tailwind/react";
 import PropTypes from 'prop-types';
 
@@ -25,10 +26,27 @@ function ShowTags(props) {
 
 export default function Search() {
     const [game, setGame] = useState('');
+    const [gameList, setGameList] = useState([]);
     const [brand, setBrand] = useState('');
+    const [brandList, setBrandList] = useState([]);
 
-    const gameList = ["FH4", "FH5"];
-    const brandList = ["BMW", "Audi", "Ferrari", "Lamborghini"];
+    const TAG_URL = "/api/images/all-tags";
+
+    useEffect(() => {
+        (async function fetchTags() {
+            try {
+                const res = await axios.get(TAG_URL, { headers: { "Content-Type": "application/json" } });
+
+                const brandTags = res?.data?.brandTags;
+                const gameTags = res?.data?.gameTags;
+
+                setBrandList(() => [...brandTags]);
+                setGameList(() => [...gameTags]);
+            } catch (err) {
+                console.log(err);
+            }
+        })();
+    }, [])
 
     console.log(game);
     console.log(brand);
@@ -39,14 +57,14 @@ export default function Search() {
                     <Typography variant="h1" className="text-myRed3">Search Page</Typography>
                     <Typography variant="lead" className="text-myGray">tag and discover.</Typography>
                 </div>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 items-center">
+                    <Typography
+                        variant="h4"
+                        className="text-myRed3"
+                    >
+                        Select Game
+                    </Typography>
                     <div className="flex flex-row items-center justify-center">
-                        <Typography
-                            variant="paragraph"
-                            className="text-myRed3 text-lg font-medium"
-                        >
-                            Select Game
-                        </Typography>
                         {
                             gameList.map((g, id) => {
                                 return (
@@ -55,13 +73,13 @@ export default function Search() {
                             })
                         }
                     </div>
-                    <div className="flex flex-row items-center justify-center">
-                        <Typography
-                            variant="paragraph"
-                            className="text-myRed3 text-lg font-medium"
-                        >
-                            Select Brand
-                        </Typography>
+                    <Typography
+                        variant="h4"
+                        className="text-myRed3"
+                    >
+                        Select Brand
+                    </Typography>
+                    <div className="flex flex-row flex-wrap gap-3 justify-center">
                         {
                             brandList.map((b, id) => {
                                 return (
