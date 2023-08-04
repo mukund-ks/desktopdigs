@@ -217,7 +217,7 @@ export default function Home() {
     const [images, setImages] = useState([]);
     const [loaded, setLoaded] = useState(false);
 
-    const IMG_URL = '/api/images';
+    const IMG_URL = '/api/images/id';
     const IMG_IDS = [
         '64861154d11697b0a9373dd3',
         '64861155d11697b0a9373e6f',

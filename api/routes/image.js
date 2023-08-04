@@ -13,7 +13,7 @@ router.get('/all', get_all_images);
 
 router.get('/all-tags', get_all_tags);
 
-router.get('/:imageID', get_by_id);
+router.get('/id/:imageID', get_by_id);
 
 router.get('/:tag1&:tag2', get_by_tags);
 

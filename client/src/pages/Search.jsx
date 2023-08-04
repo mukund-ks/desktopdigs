@@ -10,7 +10,6 @@ ShowTags.propTypes = {
     checked: PropTypes.string,
     label: PropTypes.string,
     value: PropTypes.string,
-    key: PropTypes.number,
 };
 
 function ShowTags(props) {
@@ -19,7 +18,6 @@ function ShowTags(props) {
             <input
                 type="radio"
                 className="mx-1 radio-input"
-                id={props.key}
                 checked={props.checked == props.value}
                 onChange={() => props.setTag(props.value)}
             />
@@ -34,8 +32,10 @@ export default function Search() {
     const [gameList, setGameList] = useState([]);
     const [brand, setBrand] = useState('');
     const [brandList, setBrandList] = useState([]);
+    const [query, setQuery] = useState("");
 
     const TAG_URL = "/api/images/all-tags";
+    const IMG_URL = "api/images";
 
     useEffect(() => {
         (async function fetchTags() {
@@ -53,8 +53,30 @@ export default function Search() {
         })();
     }, [])
 
+    useEffect(() => {
+        if (game && brand) {
+            setQuery(() => `${IMG_URL}/${game}&${brand}`)
+        } else if (game && !brand) {
+            setQuery(() => `${IMG_URL}/${game}`)
+        } else {
+            setQuery(() => `${IMG_URL}/${brand}`)
+        }
+    }, [brand, game])
+
+    useEffect(() => {
+        (async function fetchImgs() {
+            try {
+                const res = await axios.get(query, { headers: { "Content-Type": "application/json" } });
+                console.log(res);
+            } catch (err) {
+                console.log(err);
+            }
+        })();
+    }, [query])
+
     console.log(game);
     console.log(brand);
+    console.log(query);
     return (
         <div className="flex flex-col absolute">
             <section className="h-[100vh] w-[100vw] items-center flex flex-col justify-center md:snap-center gap-y-40">
@@ -64,7 +86,7 @@ export default function Search() {
                         whileInView={{ opacity: 1, x: '0px' }}
                         transition={{ ease: easeInOut, duration: 0.8 }}
                     >
-                        <Typography variant="h1" className="text-myRed3">Search Page</Typography>
+                        <Typography variant="h1" className="text-myRed3">Search</Typography>
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, x: '10px' }}
@@ -110,6 +132,17 @@ export default function Search() {
                             })
                         }
                     </div>
+                </motion.div>
+                <motion.div
+                    className='fixed bottom-[125px] left-0 right-0 z-20 flex justify-center'
+                    animate={{
+                        y: [1, 10, 1]
+                    }}
+                    transition={{ ease: easeInOut, repeat: Infinity, repeatDelay: 5, duration: 0.5 }}
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-6 h-6 fill-mywhite">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                    </svg>
                 </motion.div>
             </section>
             <motion.div
