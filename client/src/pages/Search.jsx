@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "@/api/axios.js";
 import { Typography } from "@material-tailwind/react";
+import { motion, easeInOut } from "framer-motion";
 import PropTypes from 'prop-types';
 import "./SearchStyles.css";
 
@@ -58,10 +59,27 @@ export default function Search() {
         <div className="flex flex-col absolute">
             <section className="h-[100vh] w-[100vw] items-center flex flex-col justify-center md:snap-center gap-y-40">
                 <div>
-                    <Typography variant="h1" className="text-myRed3">Search Page</Typography>
-                    <Typography variant="lead" className="text-myGray">tag and discover.</Typography>
+                    <motion.div
+                        initial={{ opacity: 0, x: '-10px' }}
+                        whileInView={{ opacity: 1, x: '0px' }}
+                        transition={{ ease: easeInOut, duration: 0.8 }}
+                    >
+                        <Typography variant="h1" className="text-myRed3">Search Page</Typography>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, x: '10px' }}
+                        whileInView={{ opacity: 1, x: '0px' }}
+                        transition={{ ease: easeInOut, duration: 0.8 }}
+                    >
+                        <Typography variant="lead" className="text-myGray">tag and discover.</Typography>
+                    </motion.div>
                 </div>
-                <div className="flex flex-col gap-4 items-center">
+                <motion.div
+                    className="flex flex-col gap-4 items-center"
+                    initial={{ opacity: 0, y: '10px' }}
+                    whileInView={{ opacity: 1, y: '0px' }}
+                    transition={{ ease: easeInOut, duration: 0.8 }}
+                >
                     <Typography
                         variant="h4"
                         className="text-myRed3"
@@ -92,8 +110,15 @@ export default function Search() {
                             })
                         }
                     </div>
-                </div>
+                </motion.div>
             </section>
+            <motion.div
+                className='spacer layer3 relative md:bottom-[120px] bottom-[90px]'
+                initial={{ opacity: 0, y: -10 }}
+                whileInView={{ opacity: 1, y: 5 }}
+                whileHover={{ scale: 1.03 }}
+                transition={{ ease: easeInOut, duration: 0.9 }}
+            ></motion.div>
         </div>
     );
 }
