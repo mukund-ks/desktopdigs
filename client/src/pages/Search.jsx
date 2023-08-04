@@ -5,6 +5,11 @@ import { motion, easeInOut } from "framer-motion";
 import PropTypes from 'prop-types';
 import "./SearchStyles.css";
 
+// TODO:
+//  * Conditionally render "Choose Tags", ErrorMsg or Results
+//  * Image-Result Section
+//  * Pagination
+
 ShowTags.propTypes = {
     setTag: PropTypes.func,
     checked: PropTypes.string,
@@ -33,6 +38,11 @@ export default function Search() {
     const [brand, setBrand] = useState('');
     const [brandList, setBrandList] = useState([]);
     const [query, setQuery] = useState("");
+    const [error, setError] = useState()
+    const [images, setImages] = useState([]);
+    const [imgsCount, setImgsCount] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [imgsPerPage] = useState(6);
 
     const TAG_URL = "/api/images/all-tags";
     const IMG_URL = "api/images";
@@ -48,7 +58,13 @@ export default function Search() {
                 setBrandList(() => [...brandTags]);
                 setGameList(() => [...gameTags]);
             } catch (err) {
-                console.log(err);
+                if (!err?.response) {
+                    setError("No Server Response");
+                } else if (err.response?.status === 404) {
+                    setError(err.response?.data?.message)
+                } else if (err.response?.status === 500) {
+                    setError("Internal Server Error");
+                }
             }
         })();
     }, [])
@@ -66,10 +82,29 @@ export default function Search() {
     useEffect(() => {
         (async function fetchImgs() {
             try {
+                const imgArr = [];
                 const res = await axios.get(query, { headers: { "Content-Type": "application/json" } });
+                setError("");
+                const count = res?.data?.count;
+                for (let i = 0; i < count; i++) {
+                    const imgObj = {};
+                    imgObj.imageURL = res?.data?.images[i]?.imageURL;
+                    imgObj.tags = res?.data?.images[i]?.tags
+                    imgArr.push(imgObj);
+                }
+                setImgsCount(() => count);
+                setImages(() => [...imgArr]);
                 console.log(res);
             } catch (err) {
-                console.log(err);
+                if (!err?.response) {
+                    setError("No Server Response");
+                } else if (err.response?.status === 404) {
+                    setError("No Results for selected tag(s)");
+                } else if (err.response?.status === 500) {
+                    setError("Internal Server Error");
+                }
+                setImgsCount(0)
+                setImages(() => [])
             }
         })();
     }, [query])
@@ -77,6 +112,9 @@ export default function Search() {
     console.log(game);
     console.log(brand);
     console.log(query);
+    console.log(error);
+    console.log(images);
+    console.log(imgsCount);
     return (
         <div className="flex flex-col absolute">
             <section className="h-[100vh] w-[100vw] items-center flex flex-col justify-center md:snap-center gap-y-40">
