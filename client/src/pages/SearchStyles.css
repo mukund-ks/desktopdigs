@@ -14,7 +14,7 @@
     width: 17px;
     border-radius: 50%;
     /* border: 2px solid #950740; */
-    outline: 1px solid #1A1A1D;
+    outline: 2px solid #1A1A1D;
     outline-offset: -3px;
     cursor: pointer;
     background-color: #FAF9F6;
@@ -22,8 +22,8 @@
 }
 
 .radio-input:checked+.custom-radio {
-    outline: 1px solid #1A1A1D;
+    outline: 2px solid #1A1A1D;
     outline-offset: 1px;
-    background-color: #950740;
+    background-color: #1A1A1D;
     transition: all 0.2s;
 }
