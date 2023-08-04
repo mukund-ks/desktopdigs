@@ -1,0 +1,29 @@
+.radio-input {
+    display: none;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.custom-radio {
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+    /* border: 2px solid #950740; */
+    outline: 1px solid #1A1A1D;
+    outline-offset: -3px;
+    cursor: pointer;
+    background-color: #FAF9F6;
+    display: inline-block;
+}
+
+.radio-input:checked+.custom-radio {
+    outline: 1px solid #1A1A1D;
+    outline-offset: 1px;
+    background-color: #950740;
+    transition: all 0.2s;
+}

@@ -2,24 +2,28 @@ import React, { useEffect, useState } from "react";
 import axios from "@/api/axios.js";
 import { Typography } from "@material-tailwind/react";
 import PropTypes from 'prop-types';
+import "./SearchStyles.css";
 
 ShowTags.propTypes = {
     setTag: PropTypes.func,
     checked: PropTypes.string,
     label: PropTypes.string,
     value: PropTypes.string,
+    key: PropTypes.number,
 };
 
 function ShowTags(props) {
     return (
-        <label className="text-mywhite bg-myGray mx-2 p-2 rounded-xl">
+        <label className="text-mywhite bg-myGray mx-2 p-2 rounded-md radio-label">
             <input
                 type="radio"
-                className="mx-1"
+                className="mx-1 radio-input"
+                id={props.key}
                 checked={props.checked == props.value}
                 onChange={() => props.setTag(props.value)}
             />
-            <span className="mx-1">{props.label}</span>
+            <span className="mx-1 custom-radio" />
+            {props.label}
         </label>
     );
 }
