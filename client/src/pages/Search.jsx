@@ -37,7 +37,7 @@ export default function Search() {
     const [brand, setBrand] = useState('');
     const [brandList, setBrandList] = useState([]);
     const [query, setQuery] = useState("");
-    const [error, setError] = useState()
+    const [error, setError] = useState();
     const [images, setImages] = useState([]);
     const [imgsCount, setImgsCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
@@ -60,13 +60,13 @@ export default function Search() {
                 if (!err?.response) {
                     setError("No Server Response");
                 } else if (err.response?.status === 404) {
-                    setError(err.response?.data?.message)
+                    setError(err.response?.data?.message);
                 } else if (err.response?.status === 500) {
                     setError("Internal Server Error");
                 }
             }
         })();
-    }, [])
+    }, []);
 
     useEffect(() => {
         if (game && brand) {
@@ -76,7 +76,7 @@ export default function Search() {
         } else {
             setQuery(() => `${IMG_URL}/${brand}`)
         }
-    }, [brand, game])
+    }, [brand, game]);
 
     useEffect(() => {
         (async function fetchImgs() {
@@ -105,7 +105,7 @@ export default function Search() {
                 setImages(() => [])
             }
         })();
-    }, [query])
+    }, [query]);
 
     console.log(game);
     console.log(brand);
@@ -169,7 +169,12 @@ export default function Search() {
                         }
                     </div>
                 </motion.div>
-                <div className="h-4">
+                <motion.div 
+                    className="h-4"
+                    initial={{ opacity: 0, y: '10px' }}
+                    whileInView={{ opacity: 1, y: '0px' }}
+                    transition={{ ease: easeInOut, duration: 0.8 }}
+                >
                     {
                         !brand && !game ? (
                             <Typography variant="lead" className="text-myGray">Choose Tag(s)</Typography>
@@ -191,7 +196,7 @@ export default function Search() {
                             </motion.div>
                         )
                     }
-                </div>
+                </motion.div>
             </section>
             <motion.div
                 className='spacer layer3 relative md:bottom-[120px] bottom-[90px]'
