@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
 import axios from "@/api/axios.js";
-import { Typography } from "@material-tailwind/react";
+import { IconButton, Typography } from "@material-tailwind/react";
 import { motion, easeInOut } from "framer-motion";
 import PropTypes from 'prop-types';
 import "./SearchStyles.css";
-
-// TODO:
-//  * Image-Result Section
-//  * Pagination
 
 ShowTags.propTypes = {
     setTag: PropTypes.func,
     checked: PropTypes.string,
     label: PropTypes.string,
     value: PropTypes.string,
+};
+
+Images.propTypes = {
+    imageURL: PropTypes.string,
+    tags: PropTypes.array,
+    id: PropTypes.number,
+    currentPage: PropTypes.number,
 };
 
 function ShowTags(props) {
@@ -28,6 +31,51 @@ function ShowTags(props) {
             <span className="mx-1 custom-radio" />
             {props.label}
         </label>
+    );
+}
+
+function Arrow() {
+    return (
+        <motion.div
+            className='fixed bottom-[125px] left-0 right-0 z-30 flex justify-center'
+            animate={{
+                y: [1, 10, 1]
+            }}
+            transition={{ ease: easeInOut, repeat: Infinity, repeatDelay: 5, duration: 0.5 }}
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-6 h-6 fill-mywhite">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            </svg>
+        </motion.div>
+    );
+}
+
+function Images(props) {
+    return (
+        <React.Fragment key={props.id}>
+            <motion.div
+                className="bg-transparent overflow-hidden rounded-lg shadow-md"
+                key={props.imageURL}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                whileHover={{ scale: 1.03 }}
+                transition={{ ease: easeInOut, duration: 0.7 }}
+            >
+                <Typography
+                    variant='paragraph'
+                    className='text-mywhite text-sm absolute bg-myBlack/60 backdrop-blur-md p-1 rounded-br-md opacity-0 md:opacity-100'
+                >
+                    #{props.tags[0]}{' '}#{props.tags[1]}
+                </Typography>
+                <img
+                    src={props.imageURL}
+                    id={props.id}
+                    alt={`image-${props.id}`}
+                    width={700}
+                    height={500}
+                    loading="lazy" />
+            </motion.div>
+        </React.Fragment>
     );
 }
 
@@ -70,11 +118,11 @@ export default function Search() {
 
     useEffect(() => {
         if (game && brand) {
-            setQuery(() => `${IMG_URL}/${game}&${brand}`)
+            setQuery(() => `${IMG_URL}/${game}&${brand}`);
         } else if (game && !brand) {
-            setQuery(() => `${IMG_URL}/${game}`)
+            setQuery(() => `${IMG_URL}/${game}`);
         } else {
-            setQuery(() => `${IMG_URL}/${brand}`)
+            setQuery(() => `${IMG_URL}/${brand}`);
         }
     }, [brand, game]);
 
@@ -88,7 +136,7 @@ export default function Search() {
                 for (let i = 0; i < count; i++) {
                     const imgObj = {};
                     imgObj.imageURL = res?.data?.images[i]?.imageURL;
-                    imgObj.tags = res?.data?.images[i]?.tags
+                    imgObj.tags = res?.data?.images[i]?.tags;
                     imgArr.push(imgObj);
                 }
                 setImgsCount(() => count);
@@ -101,21 +149,33 @@ export default function Search() {
                 } else if (err.response?.status === 500) {
                     setError("Internal Server Error");
                 }
-                setImgsCount(0)
-                setImages(() => [])
+                setImgsCount(0);
+                setImages(() => []);
             }
         })();
     }, [query]);
 
-    console.log(game);
-    console.log(brand);
-    console.log(query);
-    console.log(error);
-    console.log(images);
-    console.log(imgsCount);
+    const firstImg = currentPage * imgsPerPage;
+    const lastImg = firstImg - imgsPerPage;
+    const currentImgs = images.slice(lastImg, firstImg);
+
+    const pages = Math.ceil(imgsCount / imgsPerPage);
+
+    const next = () => {
+        if (currentPage === pages) return;
+
+        setCurrentPage(currentPage + 1);
+    };
+
+    const prev = () => {
+        if (currentPage === 1) return;
+
+        setCurrentPage(currentPage - 1);
+    };
+
     return (
         <div className="flex flex-col absolute">
-            <section className="h-[100vh] w-[100vw] items-center flex flex-col justify-center md:snap-center gap-y-40">
+            <section className="h-[100vh] w-[100vw] items-center flex flex-col justify-center md:snap-center gap-y-20">
                 <div>
                     <motion.div
                         initial={{ opacity: 0, x: '-10px' }}
@@ -169,34 +229,25 @@ export default function Search() {
                         }
                     </div>
                 </motion.div>
-                <motion.div 
-                    className="h-4"
-                    initial={{ opacity: 0, y: '10px' }}
-                    whileInView={{ opacity: 1, y: '0px' }}
-                    transition={{ ease: easeInOut, duration: 0.8 }}
-                >
+                <div className="h-4">
                     {
                         !brand && !game ? (
-                            <Typography variant="lead" className="text-myGray">Choose Tag(s)</Typography>
+                            <motion.div
+                                initial={{ opacity: 0, y: '10px' }}
+                                whileInView={{ opacity: 1, y: '0px' }}
+                                transition={{ ease: easeInOut, duration: 0.8 }}
+                            >
+                                <Typography variant="lead" className="text-myGray">Choose Tag(s)</Typography>
+                            </motion.div>
                         ) : error ? (
                             <h1>
                                 <Typography variant="lead" className="text-myGray">{error}</Typography>
                             </h1>
                         ) : (
-                            <motion.div
-                                className='fixed bottom-[125px] left-0 right-0 z-20 flex justify-center'
-                                animate={{
-                                    y: [1, 10, 1]
-                                }}
-                                transition={{ ease: easeInOut, repeat: Infinity, repeatDelay: 5, duration: 0.5 }}
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-6 h-6 fill-mywhite">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                </svg>
-                            </motion.div>
+                            <Arrow />
                         )
                     }
-                </motion.div>
+                </div>
             </section>
             <motion.div
                 className='spacer layer3 relative md:bottom-[120px] bottom-[90px]'
@@ -204,7 +255,66 @@ export default function Search() {
                 whileInView={{ opacity: 1, y: 5 }}
                 whileHover={{ scale: 1.03 }}
                 transition={{ ease: easeInOut, duration: 0.9 }}
-            ></motion.div>
+            />
+            {
+                images.length > 0 && (
+                    <React.Fragment>
+                        <section className="lg:mb-20 flex flex-col items-center md:snap-center justify-center lg:h-[100vh] lg:w-[100vw] h-2/4 ">
+                            <React.Fragment>
+                                <div className="grid md:grid-cols-3 grid-cols-1 gap-2 lg:gap-4 mx-[20px] mb-[20px]">
+                                    {
+                                        currentImgs.map((img, id) => (
+                                            <Images
+                                                imageURL={img.imageURL}
+                                                tags={img.tags}
+                                                id={id}
+                                                key={id}
+                                                currentPage={currentPage}
+                                            />
+                                        ))
+                                    }
+                                </div>
+                            </React.Fragment>
+                            <div className="flex items-center gap-8 z-30">
+                                <IconButton
+                                    size="sm"
+                                    variant="text"
+                                    color="white"
+                                    className="text-myRed3 border-none"
+                                    onClick={prev}
+                                    disabled={currentPage === 1}
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                                    </svg>
+                                </IconButton>
+                                <Typography className='text-mywhite'>
+                                    Page <strong>{currentPage}</strong> of <strong>{pages}</strong>
+                                </Typography>
+                                <IconButton
+                                    size="sm"
+                                    variant="text"
+                                    color="white"
+                                    className="text-myRed3 border-none"
+                                    onClick={next}
+                                    disabled={currentPage === pages}
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                                    </svg>
+                                </IconButton>
+                            </div>
+                        </section>
+                        <motion.div
+                            className='spacer layer0 relative lg:bottom-[150px] bottom-[-150px]'
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: -5 }}
+                            whileHover={{ scale: 1.03 }}
+                            transition={{ ease: easeInOut, duration: 0.7 }}
+                        ></motion.div>
+                    </React.Fragment>
+                )
+            }
         </div>
     );
 }
