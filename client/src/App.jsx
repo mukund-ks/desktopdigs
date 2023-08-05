@@ -5,6 +5,7 @@ import Nav from './components/Navbar';
 import Home from './pages/Home';
 import Gallery from './pages/Gallery';
 import Search from './pages/Search';
+import About from './pages/About';
 import './App.css';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
           <Route exact path='/' element={<Home />} />
           <Route exact path='/gallery' element={<Gallery />} />
           <Route exact path='/search' element={<Search />} />
+          <Route exact path='/about' element={<About />} />
         </Routes>
         <Footer />
       </div>
