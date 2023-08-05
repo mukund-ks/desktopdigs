@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import "./SearchStyles.css";
 
 // TODO:
-//  * Conditionally render "Choose Tags", ErrorMsg or Results
 //  * Image-Result Section
 //  * Pagination
 
@@ -94,7 +93,6 @@ export default function Search() {
                 }
                 setImgsCount(() => count);
                 setImages(() => [...imgArr]);
-                console.log(res);
             } catch (err) {
                 if (!err?.response) {
                     setError("No Server Response");
@@ -171,17 +169,29 @@ export default function Search() {
                         }
                     </div>
                 </motion.div>
-                <motion.div
-                    className='fixed bottom-[125px] left-0 right-0 z-20 flex justify-center'
-                    animate={{
-                        y: [1, 10, 1]
-                    }}
-                    transition={{ ease: easeInOut, repeat: Infinity, repeatDelay: 5, duration: 0.5 }}
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-6 h-6 fill-mywhite">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>
-                </motion.div>
+                <div className="h-4">
+                    {
+                        !brand && !game ? (
+                            <Typography variant="lead" className="text-myGray">Choose Tag(s)</Typography>
+                        ) : error ? (
+                            <h1>
+                                <Typography variant="lead" className="text-myGray">{error}</Typography>
+                            </h1>
+                        ) : (
+                            <motion.div
+                                className='fixed bottom-[125px] left-0 right-0 z-20 flex justify-center'
+                                animate={{
+                                    y: [1, 10, 1]
+                                }}
+                                transition={{ ease: easeInOut, repeat: Infinity, repeatDelay: 5, duration: 0.5 }}
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-6 h-6 fill-mywhite">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </motion.div>
+                        )
+                    }
+                </div>
             </section>
             <motion.div
                 className='spacer layer3 relative md:bottom-[120px] bottom-[90px]'
