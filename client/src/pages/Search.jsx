@@ -139,6 +139,7 @@ export default function Search() {
                     imgObj.tags = res?.data?.images[i]?.tags;
                     imgArr.push(imgObj);
                 }
+                setCurrentPage(() => 1);
                 setImgsCount(() => count);
                 setImages(() => [...imgArr]);
             } catch (err) {
