@@ -31,7 +31,7 @@ export default function About() {
                     >
                         <Typography
                             variant="paragraph"
-                            className="text-mywhite"
+                            className="text-mywhite tracking-wide"
                         >
                             Welcome to DesktopDigs! I&apos;m Mukund Kumar, the creator and driving force behind this project.
                         </Typography>
@@ -44,7 +44,7 @@ export default function About() {
                     >
                         <Typography
                             variant="paragraph"
-                            className="text-mywhite"
+                            className="text-mywhite tracking-wide"
                         >
                             At its heart, DesktopDigs is a space where my two passions—coding and in-game photography—converge to bring about a unique experience.
                             It&apos;s a platform where I showcase my in-game photography, carefully curated and presented to highlight the beauty that often rushes by in the heat of the game.
@@ -58,7 +58,7 @@ export default function About() {
                     >
                         <Typography
                             variant="paragraph"
-                            className="text-mywhite"
+                            className="text-mywhite tracking-wide"
                         >
                             Thank you for taking the time to explore my project. Your interest means a lot. If you come across any aspects of the project that you think could be made better, I invite you to consider contributing to the project&apos;s GitHub repository. Your involvement would be greatly valued.
                         </Typography>

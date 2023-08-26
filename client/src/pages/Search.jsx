@@ -183,14 +183,14 @@ export default function Search() {
                         whileInView={{ opacity: 1, x: '0px' }}
                         transition={{ ease: easeInOut, duration: 0.8 }}
                     >
-                        <Typography variant="h1" className="text-myRed3">Search</Typography>
+                        <Typography variant="h1" className="text-myRed3 tracking-wide">Search</Typography>
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, x: '10px' }}
                         whileInView={{ opacity: 1, x: '0px' }}
                         transition={{ ease: easeInOut, duration: 0.8 }}
                     >
-                        <Typography variant="lead" className="text-myGray">tag and discover.</Typography>
+                        <Typography variant="lead" className="text-myGray tracking-wide">tag and discover.</Typography>
                     </motion.div>
                 </div>
                 <motion.div
@@ -201,7 +201,7 @@ export default function Search() {
                 >
                     <Typography
                         variant="h4"
-                        className="text-myRed3"
+                        className="text-myRed3 tracking-wide"
                     >
                         Select Game
                     </Typography>
@@ -216,7 +216,7 @@ export default function Search() {
                     </div>
                     <Typography
                         variant="h4"
-                        className="text-myRed3"
+                        className="text-myRed3 tracking-wide"
                     >
                         Select Brand
                     </Typography>
@@ -238,7 +238,9 @@ export default function Search() {
                                 whileInView={{ opacity: 1, y: '0px' }}
                                 transition={{ ease: easeInOut, duration: 0.8 }}
                             >
-                                <Typography variant="lead" className="text-myGray">Choose Tag(s)</Typography>
+                                <Typography variant="lead" className="text-myGray tracking-wide">
+                                    Choose Tag(s)
+                                </Typography>
                             </motion.div>
                         ) : error ? (
                             <h1>
