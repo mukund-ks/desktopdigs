@@ -40,16 +40,6 @@ const Footer = () => {
                     <li>
                         <Typography
                             as="a"
-                            href="/"
-                            color="blue-gray"
-                            className="font-normal transition-colors text-mywhite hover:text-myGray"
-                        >
-                            Contribute
-                        </Typography>
-                    </li>
-                    <li>
-                        <Typography
-                            as="a"
                             href="mailto:mukund.28.k@gmail.com"
                             target='_blank'
                             color="blue-gray"
