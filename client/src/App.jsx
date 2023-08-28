@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Gallery from './pages/Gallery';
 import Search from './pages/Search';
 import About from './pages/About';
+import Profile from './pages/Profile';
 import './App.css';
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
           <Route exact path='/gallery' element={<Gallery />} />
           <Route exact path='/search' element={<Search />} />
           <Route exact path='/about' element={<About />} />
+          <Route exact path='/profile' element={<Profile />} />
         </Routes>
         <Footer />
       </div>

@@ -165,7 +165,9 @@ const Nav = () => {
                                     className="m-auto hidden lg:inline-block"
                                     ripple={false}
                                 >
-                                    <Button className="rounded-l-md">Profile</Button>
+                                    <Button className="rounded-l-md">
+                                        <Link to='/profile' className="flex items-center">Profile</Link>
+                                    </Button>
                                     <Button
                                         className="rounded-r-md"
                                         onClick={handleLogout}
@@ -251,7 +253,7 @@ const Nav = () => {
                                     color="white"
                                     ripple={false}
                                 >
-                                    <span>Profile</span>
+                                    <Link to='/profile'>Profile</Link>
                                 </Button>
                                 <Button
                                     variant="text"
