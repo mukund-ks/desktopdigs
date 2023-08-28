@@ -16,6 +16,7 @@ export const register_user = (req, res, next) => {
                     } else {
                         const user = new User({
                             _id: new mongoose.Types.ObjectId(),
+                            name: req.body.name,
                             username: req.body.username,
                             email: req.body.email,
                             password: hashPass,

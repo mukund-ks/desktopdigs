@@ -32,7 +32,9 @@ export default function RegisterDialog(props) {
         errMsg,
         setErrMsg,
         username,
-        setUsername
+        setUsername,
+        name,
+        setName,
     } = useContext(AuthContext);
 
     useEffect(() => {
@@ -45,6 +47,7 @@ export default function RegisterDialog(props) {
             const res = await axios.post(REGISTER_URL,
                 JSON.stringify(
                     {
+                        name:name,
                         username: username,
                         email: email,
                         password: pwd
@@ -95,6 +98,17 @@ export default function RegisterDialog(props) {
                                 </svg>
                             </button>
                         </div>
+                        <Input
+                            variant='standard'
+                            type="text"
+                            label='Name'
+                            size="lg"
+                            autoComplete="off"
+                            color="gray"
+                            className="text-mywhite"
+                            onChange={e => setName(e.target.value)}
+                            required={true}
+                        />
                         <Input
                             variant='standard'
                             type="text"
