@@ -30,8 +30,8 @@ function Image(props) {
     const y = useParallax(scrollYProgress, 300);
     const captionObj = [
         {
-            title: 'Sculpted for Supremacy: The Alluring Ferrari Enzo',
-            caption: 'An artistic masterpiece in motion. The Ferrari Enzo commands attention with its seductive curves, formidable performance, and a soul that ignites the passion of every automotive enthusiast.',
+            title: 'Sculpted for Dreams, Engineered for Speed: The Ferrari Enzo.',
+            caption: 'A symphony of power and aesthetics, where innovation and passion converge to create a timeless icon that leaves an indelible mark on both roads and hearts.',
         },
         {
             title: 'Roaring Elegance: Lamborghini Aventador',
