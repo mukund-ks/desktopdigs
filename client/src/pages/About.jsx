@@ -1,5 +1,4 @@
 import React from "react";
-// import PropTypes from 'prop-types';
 import { motion, easeInOut } from "framer-motion";
 import { Typography } from "@material-tailwind/react";
 
@@ -18,7 +17,7 @@ export default function About() {
     }
 
     const child = {
-        hidden: { opacity: 0, x: -50 },
+        hidden: { opacity: 0, x: -15 },
         show: { opacity: 1, x: 0 },
     }
 
@@ -29,15 +28,15 @@ export default function About() {
             <section className="w-[100vw] h-[100vh] items-center flex flex-col justify-center gap-y-7 md:gap-y-20 md:snap-center">
                 <div className="text-center">
                     <motion.div
-                        initial={{ opacity: 0, y: '-10px' }}
-                        whileInView={{ opacity: 1, y: '0px' }}
+                        initial={{ opacity: 0, y: '-10px', x: -5 }}
+                        whileInView={{ opacity: 1, y: '0px', x: 0 }}
                         transition={{ ease: easeInOut, duration: 0.8 }}
                     >
                         <Typography variant="h1" className="text-myRed3">About</Typography>
                     </motion.div>
                     <motion.div
-                        initial={{ opacity: 0, y: '10px' }}
-                        whileInView={{ opacity: 1, y: '0px' }}
+                        initial={{ opacity: 0, y: '10px', x: 5 }}
+                        whileInView={{ opacity: 1, y: '0px', x: 0 }}
                         transition={{ ease: easeInOut, duration: 0.8 }}
                     >
                         <Typography variant="lead" className="text-myGray">beyond the shutter.</Typography>
