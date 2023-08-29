@@ -30,6 +30,7 @@ export const register_user = (req, res, next) => {
                                     .header('auth-token', access_token)
                                     .json({
                                         message: 'User Created',
+                                        name: registeredUser.name,
                                         username: registeredUser.username,
                                         admin: registeredUser.admin,
                                         token: access_token
@@ -63,6 +64,7 @@ export const login_user = (req, res, next) => {
                             .header('auth-token', access_token)
                             .json({
                                 message: 'Authorization successful',
+                                name: user[0].name,
                                 username: user[0].username,
                                 admin: user[0].admin,
                                 token: access_token,
@@ -90,12 +92,13 @@ export const delete_user = (req, res, next) => {
 
 export const get_user = (req, res, next) => {
     User.findById(req.params.userID)
-        .select('_id username email admin')
+        .select('_id name username email admin')
         .exec()
         .then(user => {
             if (user) {
                 res.status(200).json({
                     _id: user._id,
+                    name: user.name,
                     username: user.username,
                     email: user.email,
                     admin: user.admin
@@ -121,6 +124,7 @@ export const get_all_users = (req, res, next) => {
                     users: doc.map(u => {
                         return {
                             _id: u._id,
+                            name: u.name,
                             username: u.username,
                             email: u.email,
                             password: u.password,

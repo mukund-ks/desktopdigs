@@ -55,10 +55,11 @@ export default function LoginDialog(props) {
             const token = res?.data?.token;
             const admin = res?.data?.admin;
             const username = res?.data?.username
+            const name = res?.data?.name
 
             localStorage.setItem('jwt', token);
 
-            setAuth({ username, admin, token });
+            setAuth({ name, username, admin, token });
             setEmail('');
             setPwd('');
             setAuthSuccess(true);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from "../context/AuthProvider";
 import {
     Navbar,
@@ -17,6 +17,7 @@ const Nav = () => {
     const [loginDialog, setLoginDialog] = useState(false);
     const [registerDialog, setRegisterDialog] = useState(false);
     const { auth, setAuth, setErrMsg, authSuccess, setAuthSuccess } = useContext(AuthContext);
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -36,6 +37,7 @@ const Nav = () => {
         localStorage.clear();
         setAuth({});
         setAuthSuccess(false)
+        navigate("/");
     };
 
     const navList = (

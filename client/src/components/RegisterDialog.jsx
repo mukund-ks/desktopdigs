@@ -47,7 +47,7 @@ export default function RegisterDialog(props) {
             const res = await axios.post(REGISTER_URL,
                 JSON.stringify(
                     {
-                        name:name,
+                        name: name,
                         username: username,
                         email: email,
                         password: pwd
@@ -63,7 +63,7 @@ export default function RegisterDialog(props) {
 
             localStorage.setItem('jwt', token);
 
-            setAuth({ username, admin, token });
+            setAuth({ name, username, admin, token });
             setEmail('');
             setPwd('');
             setUsername('');
