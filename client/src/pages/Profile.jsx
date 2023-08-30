@@ -13,8 +13,26 @@ export default function Profile() {
                     whileInView={{ opacity: 1, x: '0px', y: 0 }}
                     transition={{ ease: easeInOut, duration: 0.8 }}
                 >
-                    <Typography variant="h1" className="text-myRed3">Hi, {auth.username}</Typography>
+                    <Typography variant="h1" className="text-myRed3 tracking-wide">Hi, {auth.username}</Typography>
                 </motion.div>
+                <div className="flex flex-col md:flex-row w-full justify-center">
+                    <motion.div
+                        className="w-full md:w-2/4 text-center"
+                        initial={{ opacity: 0, y: '10px' }}
+                        whileInView={{ opacity: 1, y: '0px' }}
+                        transition={{ ease: easeInOut, duration: 0.8 }}
+                    >
+                        <Typography variant="h2" className="text-myRed2 tracking-wide">Liked Posts</Typography>
+                    </motion.div>
+                    <motion.div
+                        className="w-full md:w-2/4 text-center"
+                        initial={{ opacity: 0, y: '10px' }}
+                        whileInView={{ opacity: 1, y: '0px' }}
+                        transition={{ ease: easeInOut, duration: 0.8 }}
+                    >
+                        <Typography variant="h2" className="text-myRed2 tracking-wide">Account</Typography>
+                    </motion.div>
+                </div>
             </section>
             <motion.div
                 className='spacer layer0 relative md:bottom-[120px] bottom-[90px]'
