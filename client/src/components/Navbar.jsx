@@ -11,11 +11,13 @@ import {
 } from '@material-tailwind/react';
 import LoginDialog from "./LoginDialog";
 import RegisterDialog from "./RegisterDialog";
+import ProfileDialog from "./ProfileDialog";
 
 const Nav = () => {
     const [openNav, setOpenNav] = useState(false);
     const [loginDialog, setLoginDialog] = useState(false);
     const [registerDialog, setRegisterDialog] = useState(false);
+    const [profileDialog, setProfileDialog] = useState(false);
     const { auth, setAuth, setErrMsg, authSuccess, setAuthSuccess } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -28,9 +30,15 @@ const Nav = () => {
         setLoginDialog((cur) => !cur);
         setErrMsg('')
     };
+
     const handleRegisterDialog = () => {
         setRegisterDialog((cur) => !cur);
         setErrMsg('')
+    };
+
+    const handleProfileDialog = () => {
+        setProfileDialog((cur) => !cur);
+        // setErrMsg('')
     };
 
     const handleLogout = () => {
@@ -167,9 +175,16 @@ const Nav = () => {
                                     className="m-auto hidden lg:inline-block"
                                     ripple={false}
                                 >
-                                    <Button className="rounded-l-md">
-                                        <Link to='/profile' className="flex items-center">Profile</Link>
+                                    {/* Profile */}
+                                    <Button 
+                                        onClick={handleProfileDialog} 
+                                        className="rounded-l-md">
+                                        <span>Profile</span>
                                     </Button>
+                                    <ProfileDialog 
+                                        profileDialog={profileDialog}
+                                        handleProfileDialog={handleProfileDialog}
+                                    />
                                     <Button
                                         className="rounded-r-md"
                                         onClick={handleLogout}
@@ -254,8 +269,10 @@ const Nav = () => {
                                     className="mb-2"
                                     color="white"
                                     ripple={false}
+                                    onClick={handleProfileDialog}
                                 >
-                                    <Link to='/profile'>Profile</Link>
+                                    {/* <Link to='/profile'>Profile</Link> */}
+                                    <span>Profile</span>
                                 </Button>
                                 <Button
                                     variant="text"
