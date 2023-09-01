@@ -35,11 +35,12 @@ export function AuthProvider({ children }) {
                         const res2 = await axios.get(`/api/user/${userID}`, { headers: { 'Content-Type': 'application/json' } });
                         const name = res2?.data?.name;
                         const username = res2?.data?.username;
+                        const email = res2?.data?.email;
                         const admin = res2?.data?.admin;
                         setAuthSuccess(true);
                         setUsername(username);
                         setName(name);
-                        setAuth({ name, username, admin, token });
+                        setAuth({ name, email, username, admin, token });
                     } finally {
                         null;
                     }

@@ -59,7 +59,7 @@ export default function LoginDialog(props) {
 
             localStorage.setItem('jwt', token);
 
-            setAuth({ name, username, admin, token });
+            setAuth({ name, email, username, admin, token });
             setEmail('');
             setPwd('');
             setAuthSuccess(true);
