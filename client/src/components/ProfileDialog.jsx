@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import PropTypes from 'prop-types';
 import {
     Button,
@@ -9,6 +9,7 @@ import {
     Typography,
 } from "@material-tailwind/react";
 import AuthContext from "../context/AuthProvider";
+import PasswordDialog from "./PasswordDialog";
 
 ProfileDialog.propTypes = {
     profileDialog: PropTypes.bool,
@@ -17,6 +18,12 @@ ProfileDialog.propTypes = {
 
 export default function ProfileDialog(props) {
     const { auth } = useContext(AuthContext);
+    const [passwordDialog, setPasswordDialog] = useState(false);
+
+    const handlePasswordDialog = () => {
+        setPasswordDialog((cur) => !cur);
+    };
+
     return (
         <React.Fragment>
             <Dialog
@@ -90,11 +97,16 @@ export default function ProfileDialog(props) {
                         variant="filled"
                         size="sm"
                         color="white"
+                        onClick={handlePasswordDialog}
                         className="rounded-full bg-transparent shadow-none focus:shadow-none active:shadow-none hover:shadow-none border-2 border-myRed3/90 text-mywhite hover:border-myRed3/70 hover:text-mywhite/70"
                         ripple={false}
                     >
                         Change Password
                     </Button>
+                    <PasswordDialog 
+                        passwordDialog={passwordDialog}
+                        handlePasswordDialog={handlePasswordDialog}  
+                    />
                 </DialogFooter>
             </Dialog>
         </React.Fragment>

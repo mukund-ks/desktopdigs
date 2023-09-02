@@ -104,7 +104,7 @@ export default function RegisterDialog(props) {
                             label='Name'
                             size="lg"
                             autoComplete="off"
-                            color="gray"
+                            color="white"
                             className="text-mywhite"
                             onChange={e => setName(e.target.value)}
                             required={true}
@@ -115,7 +115,7 @@ export default function RegisterDialog(props) {
                             label='Username'
                             size="lg"
                             autoComplete="off"
-                            color="gray"
+                            color="white"
                             className="text-mywhite"
                             onChange={e => setUsername(e.target.value)}
                             required={true}
@@ -125,7 +125,7 @@ export default function RegisterDialog(props) {
                             type="text"
                             label='Email'
                             size="lg"
-                            color="gray"
+                            color="white"
                             className="text-mywhite"
                             autoComplete="off"
                             onChange={e => setEmail(e.target.value)}
@@ -136,7 +136,7 @@ export default function RegisterDialog(props) {
                             type='password'
                             label='Password'
                             size="lg"
-                            color="gray"
+                            color="white"
                             className="text-mywhite"
                             autoComplete="off"
                             onChange={e => setPwd(e.target.value)}
@@ -165,10 +165,10 @@ export default function RegisterDialog(props) {
                                 {errMsg}
                             </Alert>
                         }
-                        <Typography className='mt-4 text-myGray'>
+                        <Typography className='mt-4 text-mywhite/80'>
                             Already have an account? {" "}
                             <span
-                                onClick={() => { props.handleRegisterDialog(); props.handleLoginDialog(); }} className='font-medium text-myRed1 transition-colors hover:text-myRed3 cursor-pointer'
+                                onClick={() => { props.handleRegisterDialog(); props.handleLoginDialog(); }} className='font-medium text-myRed3 transition-colors hover:text-myRed3/70 cursor-pointer'
                             >
                                 Login
                             </span>

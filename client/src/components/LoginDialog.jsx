@@ -100,8 +100,7 @@ export default function LoginDialog(props) {
                             type="text"
                             label='Email'
                             size="lg"
-                            color="gray"
-                            className="text-mywhite"
+                            color="white"
                             autoComplete="off"
                             required={true}
                             onChange={(e) => setEmail(e.target.value)}
@@ -111,8 +110,7 @@ export default function LoginDialog(props) {
                             type='password'
                             label='Password'
                             size="lg"
-                            color="gray"
-                            className="text-mywhite"
+                            color="white"
                             required={true}
                             onChange={(e) => setPwd(e.target.value)}
                         />
@@ -139,11 +137,11 @@ export default function LoginDialog(props) {
                                 {errMsg}
                             </Alert>
                         }
-                        <Typography className='mt-4 text-myGray'>
+                        <Typography className='mt-4 text-mywhite/80'>
                             Don&apos;t have an account? {" "}
                             <a
                                 onClick={() => { props.handleLoginDialog(); props.handleRegisterDialog(); }}
-                                className='font-medium text-myRed1 transition-colors hover:text-myRed3 cursor-pointer'
+                                className='font-medium text-myRed3 transition-colors hover:text-myRed3/70 cursor-pointer'
                             >
                                 Register
                             </a>

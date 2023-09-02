@@ -147,3 +147,37 @@ export const get_jwt_user = (req, res, next) => {
         res.status(500).json('error')
     }
 };
+
+export const change_password = (req, res, next) => {
+    User.find({ email: req.body.email })
+        .exec()
+        .then(user => {
+            if (user.length < 1) {
+                return res.status(404).json({ message: "No user found for given E-mail" });
+            } else {
+                console.log(user);
+                bcrypt.compare(req.body.oldPass, user[0].password, (err, result) => {
+                    if (err) {
+                        return res.status(401).json({ message: "Authorization failed" });
+                    }
+                    if (result) {
+                        bcrypt.hash(req.body.newPass, 10, (err, newHashPass) => {
+                            if (err) {
+                                return res.status(500).json({ error: err });
+                            } else {
+                                User.findByIdAndUpdate(user[0]._id, { password: newHashPass }, { new: true })
+                                    .then(doc => {
+                                        return res.status(200).json({ message: "Password Updated" });
+                                    })
+                                    .catch(err => {
+                                        return res.status(500).json({ error: err });
+                                    });
+                            }
+                        });
+                    } else {
+                        return res.status(401).json({ message: "Incorrect Old Password" });
+                    }
+                });
+            }
+        });
+}
