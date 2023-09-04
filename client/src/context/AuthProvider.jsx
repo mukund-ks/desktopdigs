@@ -48,7 +48,7 @@ export function AuthProvider({ children }) {
                     if (!err?.response) {
                         alert("No Server Response");
                     } else if (err.response?.status === 401) {
-                        alert("Invalid Token. Login Again.");
+                        alert("Token Expired. Please Login Again.");
                     } else if (err.response?.status === 403) {
                         alert("Unauthorized");
                     } else if (err.response?.status === 404) {
