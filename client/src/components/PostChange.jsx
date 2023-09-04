@@ -14,7 +14,7 @@ export default function PostChange(props) {
     const navigate = useNavigate();
     let intervalRef = useRef();
 
-    const decreaseNum = () => setNum((prev) => prev - 1);
+    const decreaseNum = () => { if (num > 0 && num <= 10) setNum((prev) => prev - 1) };
 
     useEffect(() => {
         intervalRef.current = setInterval(decreaseNum, 1000);
@@ -23,10 +23,10 @@ export default function PostChange(props) {
 
     if (num < 0) {
         localStorage.clear();
+        props.handleProfileDialog();
         setUsername("");
         setAuth({});
         setAuthSuccess(false);
-        props.handleProfileDialog();
         navigate("/");
     }
 
