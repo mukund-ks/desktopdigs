@@ -18,7 +18,7 @@ const Nav = () => {
     const [loginDialog, setLoginDialog] = useState(false);
     const [registerDialog, setRegisterDialog] = useState(false);
     const [profileDialog, setProfileDialog] = useState(false);
-    const { auth, setAuth, setErrMsg, authSuccess, setAuthSuccess } = useContext(AuthContext);
+    const { auth, setAuth, setErrMsg, authSuccess, setAuthSuccess, setUsername } = useContext(AuthContext);
     const navigate = useNavigate();
 
 
@@ -44,7 +44,8 @@ const Nav = () => {
     const handleLogout = () => {
         localStorage.clear();
         setAuth({});
-        setAuthSuccess(false)
+        setAuthSuccess(false);
+        setUsername("");
         navigate("/");
     };
 
@@ -176,12 +177,12 @@ const Nav = () => {
                                     ripple={false}
                                 >
                                     {/* Profile */}
-                                    <Button 
-                                        onClick={handleProfileDialog} 
+                                    <Button
+                                        onClick={handleProfileDialog}
                                         className="rounded-l-md">
                                         <span>Profile</span>
                                     </Button>
-                                    <ProfileDialog 
+                                    <ProfileDialog
                                         profileDialog={profileDialog}
                                         handleProfileDialog={handleProfileDialog}
                                     />
