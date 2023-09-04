@@ -155,7 +155,7 @@ export const change_password = (req, res, next) => {
             if (user.length < 1) {
                 return res.status(404).json({ message: "No user found for given E-mail" });
             } else {
-                console.log(user);
+                // console.log(user);
                 bcrypt.compare(req.body.oldPass, user[0].password, (err, result) => {
                     if (err) {
                         return res.status(401).json({ message: "Authorization failed" });
