@@ -21,7 +21,7 @@ export default function PostChange(props) {
         return () => clearInterval(intervalRef.current);
     }, []);
 
-    if (num === 0) {
+    if (num < 0) {
         localStorage.clear();
         setUsername("");
         setAuth({});
