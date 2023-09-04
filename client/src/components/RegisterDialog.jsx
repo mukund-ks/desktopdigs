@@ -88,7 +88,7 @@ export default function RegisterDialog(props) {
                 size="xs"
                 className="bg-transparent shadow-none"
             >
-                <Card className="mx-auto w-full max-w-[24rem] bg-myBlack/40 shadow-inner">
+                <Card className="mx-auto w-full max-w-[24rem] bg-myBlack/50 shadow-inner">
                     <CardBody className="flex flex-col gap-4 text-mywhite">
                         <div className="flex flex-row w-full justify-between">
                             <Typography variant='h3'>Register</Typography>
