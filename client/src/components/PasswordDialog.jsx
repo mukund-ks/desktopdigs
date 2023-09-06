@@ -17,7 +17,7 @@ import PostChange from "./PostChange";
 PasswordDialog.propTypes = {
     passwordDialog: PropTypes.bool,
     handlePasswordDialog: PropTypes.func,
-    handleProfileDialog: PropTypes.func,
+    handleLogout: PropTypes.func,
 };
 
 const PASSWORD_URL = '/api/user/change-password';
@@ -25,14 +25,23 @@ const PASSWORD_URL = '/api/user/change-password';
 export default function PasswordDialog(props) {
     const [oldPass, setOldPass] = useState("");
     const [newPass, setNewPass] = useState("");
+    const [confirmPass, setConfirmPass] = useState("");
+    const [checkNewPass, setCheckNewPass] = useState(false);
     const [checkPass, setCheckPass] = useState(false);
-    const [success, setSuccess] = useState(false);
     const [errMsg, setErrMsg] = useState("");
-    const { auth } = useContext(AuthContext);
+    const { auth, passSuccess, setPassSuccess } = useContext(AuthContext);
 
     useEffect(() => {
-        setErrMsg('');
-    }, [oldPass, newPass]);
+        if (oldPass !== "" || newPass !== "" || confirmPass !== "") {
+            newPass === confirmPass ? setCheckNewPass(true) : setCheckNewPass(false);
+            oldPass === newPass ? setCheckPass(true) : setCheckPass(false);
+        }
+        setErrMsg('')
+    }, [oldPass, newPass, confirmPass]);
+
+    useEffect(() => {
+        checkPass ? setErrMsg("Current Password and New Password are identical") : setErrMsg("")
+    }, [checkPass])
 
     const handlePassChange = async (e) => {
         e.preventDefault();
@@ -50,8 +59,8 @@ export default function PasswordDialog(props) {
                     withCredentials: true,
                 }
             );
-            console.log(res);
-            setSuccess(true);
+            if (res) null;
+            setPassSuccess(true);
         } catch (error) {
             if (!error?.response) {
                 setErrMsg("No Server Response");
@@ -113,12 +122,13 @@ export default function PasswordDialog(props) {
                             color="white"
                             className="text-mywhite"
                             autoComplete="off"
-                            onChange={e => setCheckPass(newPass === e.target.value ? true : false)}
+                            onChange={e => setConfirmPass(e.target.value)}
                             required={true}
                         />
                     </CardBody>
                     <CardFooter>
                         <Button
+                            disabled={((newPass === oldPass) ? true : !checkNewPass ? true : false)}
                             variant="gradient"
                             onClick={handlePassChange}
                             fullWidth={true}
@@ -128,7 +138,7 @@ export default function PasswordDialog(props) {
                             Submit
                         </Button>
                         {
-                            !checkPass && newPass &&
+                            !checkNewPass && newPass && confirmPass && !checkPass &&
                             <Alert
                                 className="bg-yellow-800 mb-2"
                                 icon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -145,7 +155,7 @@ export default function PasswordDialog(props) {
                             </Alert>
                         }
                         {
-                            success &&
+                            passSuccess &&
                             <Alert
                                 className="bg-green-600"
                                 icon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -159,7 +169,10 @@ export default function PasswordDialog(props) {
                                 >
                                     Password Reset successfull
                                 </Typography>
-                                <PostChange handleProfileDialog={props.handleProfileDialog} />
+                                <PostChange
+                                    handlePasswordDialog={props.handlePasswordDialog}
+                                    handleLogout={props.handleLogout}
+                                />
                             </Alert>
                         }
                         {

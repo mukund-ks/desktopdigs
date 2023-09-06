@@ -1,17 +1,16 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import PropTypes from 'prop-types';
-import AuthContext from "../context/AuthProvider";
-import { useNavigate } from "react-router-dom";
 import { Typography } from "@material-tailwind/react";
+import AuthContext from "../context/AuthProvider";
 
 PostChange.propTypes = {
-    handleProfileDialog: PropTypes.func,
+    handlePasswordDialog: PropTypes.func,
+    handleLogout: PropTypes.func,
 };
 
-export default function PostChange() {
+export default function PostChange(props) {
     const [num, setNum] = useState(10);
-    const { setUsername, setAuth, setAuthSuccess } = useContext(AuthContext);
-    const navigate = useNavigate();
+    const { setPassSuccess } = useContext(AuthContext);
     let intervalRef = useRef();
 
     const decreaseNum = () => { if (num > 0 && num <= 10) setNum((prev) => prev - 1) };
@@ -21,14 +20,15 @@ export default function PostChange() {
         return () => clearInterval(intervalRef.current);
     }, []);
 
-    if (num < 0) {
-        localStorage.clear();
-        // props.handleProfileDialog();
-        setUsername("");
-        setAuth({});
-        setAuthSuccess(false);
-        navigate("/");
-    }
+    useEffect(() => {
+        if (num === 0) {
+            setPassSuccess(false);
+            props.handleLogout();
+            props.handlePasswordDialog();
+        } else {
+            null
+        }
+    }, [num])
 
     return (
         <React.Fragment>

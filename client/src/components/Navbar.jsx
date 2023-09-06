@@ -12,13 +12,23 @@ import {
 import LoginDialog from "./LoginDialog";
 import RegisterDialog from "./RegisterDialog";
 import ProfileDialog from "./ProfileDialog";
+import PasswordDialog from "./PasswordDialog";
 
 const Nav = () => {
     const [openNav, setOpenNav] = useState(false);
     const [loginDialog, setLoginDialog] = useState(false);
     const [registerDialog, setRegisterDialog] = useState(false);
     const [profileDialog, setProfileDialog] = useState(false);
-    const { auth, setAuth, setErrMsg, authSuccess, setAuthSuccess, setUsername } = useContext(AuthContext);
+    const [passwordDialog, setPasswordDialog] = useState(false);
+    const {
+        auth,
+        setAuth,
+        setErrMsg,
+        authSuccess,
+        setAuthSuccess,
+        setUsername,
+        // passSuccess
+    } = useContext(AuthContext);
     const navigate = useNavigate();
 
 
@@ -39,6 +49,10 @@ const Nav = () => {
     const handleProfileDialog = () => {
         setProfileDialog((cur) => !cur);
         // setErrMsg('')
+    };
+
+    const handlePasswordDialog = () => {
+        setPasswordDialog((cur) => !cur)
     };
 
     const handleLogout = () => {
@@ -114,20 +128,10 @@ const Nav = () => {
                                     <Button onClick={handleLoginDialog} className="rounded-l-md">
                                         <span>Login</span>
                                     </Button>
-                                    <LoginDialog
-                                        loginDialog={loginDialog}
-                                        handleLoginDialog={handleLoginDialog}
-                                        handleRegisterDialog={handleRegisterDialog}
-                                    />
                                     {/* Register */}
                                     <Button onClick={handleRegisterDialog} className="rounded-r-md">
                                         <span>Register</span>
                                     </Button>
-                                    <RegisterDialog
-                                        registerDialog={registerDialog}
-                                        handleLoginDialog={handleLoginDialog}
-                                        handleRegisterDialog={handleRegisterDialog}
-                                    />
                                 </ButtonGroup>
                                 <IconButton
                                     variant="text"
@@ -182,10 +186,7 @@ const Nav = () => {
                                         className="rounded-l-md">
                                         <span>Profile</span>
                                     </Button>
-                                    <ProfileDialog
-                                        profileDialog={profileDialog}
-                                        handleProfileDialog={handleProfileDialog}
-                                    />
+                                    {/* Logout */}
                                     <Button
                                         className="rounded-r-md"
                                         onClick={handleLogout}
@@ -291,6 +292,33 @@ const Nav = () => {
                     }
                 </Collapse>
             </Navbar>
+            {/* Dialogs */}
+            <LoginDialog
+                loginDialog={loginDialog}
+                handleLoginDialog={handleLoginDialog}
+                handleRegisterDialog={handleRegisterDialog}
+            />
+            <RegisterDialog
+                registerDialog={registerDialog}
+                handleLoginDialog={handleLoginDialog}
+                handleRegisterDialog={handleRegisterDialog}
+            />
+            {
+                authSuccess ? (
+                    <React.Fragment>
+                        <ProfileDialog
+                            profileDialog={profileDialog}
+                            handleProfileDialog={handleProfileDialog}
+                            handlePasswordDialog={handlePasswordDialog}
+                        />
+                        <PasswordDialog
+                            passwordDialog={passwordDialog}
+                            handlePasswordDialog={handlePasswordDialog}
+                            handleLogout={handleLogout}
+                        />
+                    </React.Fragment>
+                ) : null
+            }
         </React.Fragment>
     );
 };

@@ -18,6 +18,7 @@ export function AuthProvider({ children }) {
     const [authSuccess, setAuthSuccess] = useState(false);
     const [errMsg, setErrMsg] = useState('');
     const [name, setName] = useState('');
+    const [passSuccess, setPassSuccess] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem('jwt');
@@ -72,6 +73,7 @@ export function AuthProvider({ children }) {
             pwd, setPwd,
             errMsg, setErrMsg,
             authSuccess, setAuthSuccess,
+            passSuccess, setPassSuccess,
         }}>
             {children}
         </AuthContext.Provider>

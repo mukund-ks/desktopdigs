@@ -137,7 +137,7 @@ export default function LoginDialog(props) {
                                 {errMsg}
                             </Alert>
                         }
-                        <Typography className='mt-4 text-mywhite/80'>
+                        <Typography className='mt-4 text-mywhite/80 w-auto'>
                             Don&apos;t have an account? {" "}
                             <a
                                 onClick={() => { props.handleLoginDialog(); props.handleRegisterDialog(); }}

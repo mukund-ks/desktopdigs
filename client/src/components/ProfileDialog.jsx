@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import PropTypes from 'prop-types';
 import AuthContext from "../context/AuthProvider";
-import PasswordDialog from "./PasswordDialog";
 import {
     Button,
     Dialog,
@@ -14,15 +13,11 @@ import {
 ProfileDialog.propTypes = {
     profileDialog: PropTypes.bool,
     handleProfileDialog: PropTypes.func,
+    handlePasswordDialog: PropTypes.func,
 };
 
 export default function ProfileDialog(props) {
     const { auth } = useContext(AuthContext);
-    const [passwordDialog, setPasswordDialog] = useState(false);
-
-    const handlePasswordDialog = () => {
-        setPasswordDialog((cur) => !cur);
-    };
 
     return (
         <React.Fragment>
@@ -93,17 +88,12 @@ export default function ProfileDialog(props) {
                         variant="filled"
                         size="sm"
                         color="white"
-                        onClick={handlePasswordDialog}
+                        onClick={() => { props.handlePasswordDialog(); props.handleProfileDialog(); }}
                         className="rounded-full bg-transparent shadow-none focus:shadow-none active:shadow-none hover:shadow-none border-2 border-myRed3/80 text-mywhite hover:border-myRed3/70 hover:text-mywhite/70"
                         ripple={false}
                     >
                         Change Password
                     </Button>
-                    <PasswordDialog
-                        passwordDialog={passwordDialog}
-                        handlePasswordDialog={handlePasswordDialog}
-                        handleProfileDialog={props.handleProfileDialog}
-                    />
                 </DialogFooter>
             </Dialog>
         </React.Fragment>
