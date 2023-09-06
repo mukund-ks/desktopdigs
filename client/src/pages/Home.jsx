@@ -124,6 +124,8 @@ function Intro() {
             <section className='snap-center h-[100vh] w-[100vw] items-center flex flex-row relative'>
                 <div className='absolute flex flex-row-reverse mx-1 w-[100%] items-center justify-between'>
                     <motion.svg
+                        drag
+                        dragSnapToOrigin
                         id="visual"
                         viewBox="-190 -150 480 300"
                         className='relative mx-[12vw]'

@@ -8,7 +8,7 @@ PostChange.propTypes = {
     handleProfileDialog: PropTypes.func,
 };
 
-export default function PostChange(props) {
+export default function PostChange() {
     const [num, setNum] = useState(10);
     const { setUsername, setAuth, setAuthSuccess } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ export default function PostChange(props) {
 
     if (num < 0) {
         localStorage.clear();
-        props.handleProfileDialog();
+        // props.handleProfileDialog();
         setUsername("");
         setAuth({});
         setAuthSuccess(false);
