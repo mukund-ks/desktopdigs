@@ -1,4 +1,4 @@
-## DesktopDigs
+# DesktopDigs
 An In-Game Lens Exhibit.
 
 ## About
