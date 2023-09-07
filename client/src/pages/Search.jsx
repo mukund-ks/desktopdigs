@@ -170,30 +170,52 @@ export default function Search() {
                     >
                         Select Game
                     </Typography>
-                    <div className="flex flex-row items-center justify-center">
-                        {
-                            gameList.map((g, id) => {
-                                return (
-                                    <ShowTags setTag={setGame} checked={game} label={g} value={g} key={id} />
-                                );
-                            })
-                        }
-                    </div>
+                    {
+                        gameList.length ? (
+                            <div className="flex flex-row items-center justify-center">
+                                {
+                                    gameList.map((g, id) => {
+                                        return (
+                                            <ShowTags setTag={setGame} checked={game} label={g} value={g} key={id} />
+                                        );
+                                    })
+                                }
+                            </div>
+                        ) : (
+                            <Typography
+                                variant="paragraph"
+                                className="text-myGray tracking-wide"
+                            >
+                                Could not load tags
+                            </Typography>
+                        )
+                    }
                     <Typography
                         variant="h4"
                         className="text-myRed3 tracking-wide"
                     >
                         Select Brand
                     </Typography>
-                    <div className="flex flex-row flex-wrap gap-3 justify-center">
-                        {
-                            brandList.map((b, id) => {
-                                return (
-                                    <ShowTags setTag={setBrand} checked={brand} label={b} value={b} key={id} />
-                                );
-                            })
-                        }
-                    </div>
+                    {
+                        brandList.length ? (
+                            <div className="flex flex-row flex-wrap gap-3 justify-center">
+                                {
+                                    brandList.map((b, id) => {
+                                        return (
+                                            <ShowTags setTag={setBrand} checked={brand} label={b} value={b} key={id} />
+                                        );
+                                    })
+                                }
+                            </div>
+                        ) : (
+                            <Typography
+                                variant="paragraph"
+                                className="text-myGray tracking-wide"
+                            >
+                                Could not load tags
+                            </Typography>
+                        )
+                    }
                 </motion.div>
                 <div className="h-4">
                     {

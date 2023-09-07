@@ -191,13 +191,19 @@ function Intro() {
                     </div>
                 </div>
                 <motion.div
-                    className='fixed bottom-[165px] left-0 right-0 z-20 flex justify-center'
+                    className='fixed bottom-[165px] left-0 right-0 z-20 flex justify-center items-center flex-col w-auto'
                     ref={lineRef}
                     animate={{
                         y: [1, 10, 1]
                     }}
                     transition={{ ease: easeInOut, repeat: Infinity, repeatDelay: 5, duration: 0.5 }}
                 >
+                    <Typography
+                        variant="paragraph"
+                        className="text-myGray tracking-wide"
+                    >
+                        Explore Featured Images!
+                    </Typography>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-6 h-6 fill-mywhite">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                     </svg>
