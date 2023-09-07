@@ -42,7 +42,6 @@ export const get_all_images = (req, res, next) => {
 export const add_image = (req, res, next) => {
     const command = new ListObjectsV2Command({
         Bucket: process.env.AWS_BUCKET_NAME,
-        MaxKeys: 174
     });
 
     client.send(command)

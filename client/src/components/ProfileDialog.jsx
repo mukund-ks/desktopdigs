@@ -9,6 +9,9 @@ import {
     DialogFooter,
     Typography,
 } from "@material-tailwind/react";
+import axios from "@/api/axios.js";
+
+const REFRESH_URL = "/api/images/"
 
 ProfileDialog.propTypes = {
     profileDialog: PropTypes.bool,
@@ -18,6 +21,20 @@ ProfileDialog.propTypes = {
 
 export default function ProfileDialog(props) {
     const { auth } = useContext(AuthContext);
+
+    const refreshDB = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.post(REFRESH_URL, { headers: { 'Content-Type': 'application/json' }, });
+            alert(res?.data?.message);
+        } catch (error) {
+            if (!error?.response) {
+                alert("No Response");
+            } else if (error.response?.status === 500) {
+                alert("Server Error!");
+            }
+        }
+    }
 
     return (
         <React.Fragment>
@@ -84,16 +101,32 @@ export default function ProfileDialog(props) {
                     </div>
                 </DialogBody>
                 <DialogFooter>
-                    <Button
-                        variant="filled"
-                        size="sm"
-                        color="white"
-                        onClick={() => { props.handlePasswordDialog(); props.handleProfileDialog(); }}
-                        className="rounded-full bg-transparent shadow-none focus:shadow-none active:shadow-none hover:shadow-none border-2 border-myRed3/80 text-mywhite hover:border-myRed3/70 hover:text-mywhite/70"
-                        ripple={false}
-                    >
-                        Change Password
-                    </Button>
+                    <div className="flex flex-row justify-around gap-2 w-full">
+                        <Button
+                            variant="filled"
+                            size="sm"
+                            color="white"
+                            onClick={() => { props.handlePasswordDialog(); props.handleProfileDialog(); }}
+                            className="rounded-full bg-transparent shadow-none focus:shadow-none active:shadow-none hover:shadow-none border-2 border-myRed3/80 text-mywhite hover:border-myRed3/70 hover:text-mywhite/70"
+                            ripple={false}
+                        >
+                            Change Password
+                        </Button>
+                        {
+                            auth.admin && (
+                                <Button
+                                    variant="filled"
+                                    size="sm"
+                                    color="white"
+                                    onClick={refreshDB}
+                                    className="rounded-full bg-transparent shadow-none focus:shadow-none active:shadow-none hover:shadow-none border-2 border-myRed3/80 text-mywhite hover:border-myRed3/70 hover:text-mywhite/70"
+                                    ripple={false}
+                                >
+                                    Refresh DB
+                                </Button>
+                            )
+                        }
+                    </div>
                 </DialogFooter>
             </Dialog>
         </React.Fragment>

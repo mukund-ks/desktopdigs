@@ -13,7 +13,7 @@ export default function PostChange(props) {
     const { setPassSuccess } = useContext(AuthContext);
     let intervalRef = useRef();
 
-    const decreaseNum = () => { if (num > 0 && num <= 10) setNum((prev) => prev - 1) };
+    const decreaseNum = () => { (num > 0 && num <= 10) ? setNum((prev) => prev - 1) : setNum((num) => num); };
 
     useEffect(() => {
         intervalRef.current = setInterval(decreaseNum, 1000);
@@ -28,7 +28,7 @@ export default function PostChange(props) {
         } else {
             null
         }
-    }, [num])
+    }, [num]);
 
     return (
         <React.Fragment>
@@ -39,5 +39,5 @@ export default function PostChange(props) {
                 You will be redirected in {num} seconds.
             </Typography>
         </React.Fragment>
-    )
+    );
 }
