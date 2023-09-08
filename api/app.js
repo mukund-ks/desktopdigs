@@ -5,12 +5,15 @@ import bodyParser from 'body-parser';
 import logger from 'morgan';
 import imageRoutes from './routes/image.js';
 import userRoutes from './routes/user.js';
+import staticRoute from './routes/static.js';
 
 try {
     mongoose.connect(`mongodb+srv://mukundKS:${process.env.MONGODB_PASS}@ddcluster.p4gf2tv.mongodb.net/?retryWrites=true&w=majority`)
 } catch (err) {
     console.log(err);
 }
+
+app.use(Express.static('public'));
 
 app.use(logger('dev'));
 
@@ -24,6 +27,8 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Credentials', true);
     next();
 });
+
+app.use('/', staticRoute);
 
 app.use('/api/images', imageRoutes);
 
