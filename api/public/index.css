@@ -1,0 +1,22 @@
+@font-face {
+    font-family: Cabin;
+    src: url(font/Cabin-VariableFont_wdth\,wght.ttf);
+}
+
+html{
+    overflow: hidden;
+}
+
+.container{
+    font-family: Cabin;
+    background-color: #1A1A1D;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heading{
+    color: #C3073F;
+}
