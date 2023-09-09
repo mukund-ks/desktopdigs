@@ -1,12 +1,12 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
 import Footer from './components/Footer';
 import Nav from './components/Navbar';
-import Home from './pages/Home';
-import Gallery from './pages/Gallery';
-import Search from './pages/Search';
 import About from './pages/About';
-import './App.css';
+import Gallery from './pages/Gallery';
+import Home from './pages/Home';
+import Search from './pages/Search';
 
 const App = () => {
   return (

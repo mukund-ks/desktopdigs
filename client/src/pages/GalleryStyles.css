@@ -2,7 +2,7 @@ html {
     scroll-snap-type: y mandatory;
 }
 
-.spacer{
+.spacer {
     aspect-ratio: 960/300;
     width: 100%;
     background-repeat: no-repeat;
@@ -10,25 +10,26 @@ html {
     background-size: cover;
 }
 
-.layer{
+.layer {
     background-image: url('../assets/spacer.svg');
 }
-.layer0{
+
+.layer0 {
     background-image: url('../assets/spacer-0.svg');
 }
 
-.layer1{
+.layer1 {
     background-image: url('../assets/spacer-1.svg');
 }
 
-.layer2{
+.layer2 {
     background-image: url('../assets/spacer-2.svg');
 }
 
-.layer3{
+.layer3 {
     background-image: url('../assets/spacer-3.svg');
 }
 
-.layer4{
+.layer4 {
     background-image: url('../assets/spacer-4.svg');
 }

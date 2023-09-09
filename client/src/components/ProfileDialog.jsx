@@ -1,17 +1,17 @@
-import React, { useContext } from "react";
-import PropTypes from 'prop-types';
-import AuthContext from "../context/AuthProvider";
+import axios from "@/api/axios.js";
 import {
     Button,
     Dialog,
-    DialogHeader,
     DialogBody,
     DialogFooter,
+    DialogHeader,
     Typography,
 } from "@material-tailwind/react";
-import axios from "@/api/axios.js";
+import PropTypes from 'prop-types';
+import React, { useContext } from "react";
+import AuthContext from "../context/AuthProvider";
 
-const REFRESH_URL = "/api/images/"
+const REFRESH_URL = "/api/images/";
 
 ProfileDialog.propTypes = {
     profileDialog: PropTypes.bool,
@@ -34,7 +34,7 @@ export default function ProfileDialog(props) {
                 alert("Server Error!");
             }
         }
-    }
+    };
 
     return (
         <React.Fragment>

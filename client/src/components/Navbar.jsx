@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useContext } from "react";
+import {
+    Button,
+    ButtonGroup,
+    Collapse,
+    IconButton,
+    Navbar,
+    Typography,
+} from '@material-tailwind/react';
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from "../context/AuthProvider";
-import {
-    Navbar,
-    Collapse,
-    Typography,
-    Button,
-    IconButton,
-    ButtonGroup,
-} from '@material-tailwind/react';
 import LoginDialog from "./LoginDialog";
-import RegisterDialog from "./RegisterDialog";
-import ProfileDialog from "./ProfileDialog";
 import PasswordDialog from "./PasswordDialog";
+import ProfileDialog from "./ProfileDialog";
+import RegisterDialog from "./RegisterDialog";
 
 const Nav = () => {
     const [openNav, setOpenNav] = useState(false);
@@ -38,12 +38,12 @@ const Nav = () => {
 
     const handleLoginDialog = () => {
         setLoginDialog((cur) => !cur);
-        setErrMsg('')
+        setErrMsg('');
     };
 
     const handleRegisterDialog = () => {
         setRegisterDialog((cur) => !cur);
-        setErrMsg('')
+        setErrMsg('');
     };
 
     const handleProfileDialog = () => {
@@ -52,7 +52,7 @@ const Nav = () => {
     };
 
     const handlePasswordDialog = () => {
-        setPasswordDialog((cur) => !cur)
+        setPasswordDialog((cur) => !cur);
     };
 
     const handleLogout = () => {

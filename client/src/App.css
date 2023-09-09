@@ -24,7 +24,7 @@ body {
   height: 100vh;
 }
 
-Nav{
+Nav {
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   -moz-backdrop-filter: blur(3px);

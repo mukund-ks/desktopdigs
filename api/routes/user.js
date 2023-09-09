@@ -1,15 +1,15 @@
 import Express from 'express';
-const router = Express.Router();
 import {
+    change_password,
     delete_user,
     get_all_users,
     get_jwt_user,
     get_user,
     login_user,
-    register_user,
-    change_password
+    register_user
 } from '../controllers/user.js';
 import { checkAdmin, verifyToken } from '../middlewares/auth.js';
+const router = Express.Router();
 
 router.get('/', verifyToken, checkAdmin, get_all_users);
 

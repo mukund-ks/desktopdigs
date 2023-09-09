@@ -3,11 +3,11 @@
     src: url(font/Cabin-VariableFont_wdth\,wght.ttf);
 }
 
-html{
+html {
     overflow: hidden;
 }
 
-.container{
+.container {
     font-family: Cabin;
     background-color: #1A1A1D;
     width: 100vw;
@@ -17,6 +17,6 @@ html{
     align-items: center;
 }
 
-.heading{
+.heading {
     color: #C3073F;
 }

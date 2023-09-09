@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
 import axios from "@/api/axios.js";
 import { IconButton, Typography } from "@material-tailwind/react";
-import { motion, easeInOut } from "framer-motion";
+import { easeInOut, motion } from "framer-motion";
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from "react";
 import Images from "../components/ImageResult";
 import "./SearchStyles.css";
 

@@ -1,14 +1,14 @@
-import mongoose from 'mongoose';
-import Express from 'express';
-const app = Express();
 import bodyParser from 'body-parser';
+import Express from 'express';
+import mongoose from 'mongoose';
 import logger from 'morgan';
 import imageRoutes from './routes/image.js';
-import userRoutes from './routes/user.js';
 import staticRoute from './routes/static.js';
+import userRoutes from './routes/user.js';
+const app = Express();
 
 try {
-    mongoose.connect(`mongodb+srv://mukundKS:${process.env.MONGODB_PASS}@ddcluster.p4gf2tv.mongodb.net/?retryWrites=true&w=majority`)
+    mongoose.connect(`mongodb+srv://mukundKS:${process.env.MONGODB_PASS}@ddcluster.p4gf2tv.mongodb.net/?retryWrites=true&w=majority`);
 } catch (err) {
     console.log(err);
 }

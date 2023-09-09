@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
 import User from '../models/user.js';
 
 export const register_user = (req, res, next) => {
@@ -108,7 +108,7 @@ export const get_user = (req, res, next) => {
             }
         })
         .catch(err => {
-            res.status(500).json({ error: err })
+            res.status(500).json({ error: err });
         });
 };
 
@@ -144,7 +144,7 @@ export const get_jwt_user = (req, res, next) => {
     if (req.user) {
         res.status(200).json({ User: req.user });
     } else {
-        res.status(500).json('error')
+        res.status(500).json('error');
     }
 };
 
@@ -180,4 +180,4 @@ export const change_password = (req, res, next) => {
                 });
             }
         });
-}
+};

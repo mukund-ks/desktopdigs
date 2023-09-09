@@ -1,16 +1,16 @@
-import React, { useState, useContext, useEffect } from "react";
-import PropTypes from 'prop-types';
+import axios from '@/api/axios.js';
 import {
-    Typography,
+    Alert,
     Button,
-    Dialog,
+    Card,
     CardBody,
     CardFooter,
-    Card,
+    Dialog,
     Input,
-    Alert,
+    Typography,
 } from '@material-tailwind/react';
-import axios from '@/api/axios.js';
+import PropTypes from 'prop-types';
+import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/AuthProvider";
 import PostChange from "./PostChange";
 
@@ -41,7 +41,7 @@ export default function PasswordDialog(props) {
 
     useEffect(() => {
         checkPass ? setErrMsg("Current Password and New Password are identical") : setErrMsg("")
-    }, [checkPass])
+    }, [checkPass]);
 
     const handlePassChange = async (e) => {
         e.preventDefault();
@@ -72,7 +72,7 @@ export default function PasswordDialog(props) {
                 setErrMsg("Password Change Failed");
             }
         }
-    }
+    };
 
     return (
         <React.Fragment>

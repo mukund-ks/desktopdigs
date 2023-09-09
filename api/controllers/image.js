@@ -1,6 +1,6 @@
+import { ListObjectsV2Command, S3Client } from '@aws-sdk/client-s3';
 import mongoose from 'mongoose';
 import Image from '../models/image.js';
-import { S3Client, ListObjectsV2Command } from '@aws-sdk/client-s3';
 
 const client = new S3Client({
     region: 'ap-south-1',
@@ -10,7 +10,7 @@ const client = new S3Client({
     }
 });
 
-const ObjectURL = `https://${process.env.AWS_BUCKET_NAME}.s3.ap-south-1.amazonaws.com`
+const ObjectURL = `https://${process.env.AWS_BUCKET_NAME}.s3.ap-south-1.amazonaws.com`;
 
 export const get_all_images = (req, res, next) => {
     Image.find()
@@ -148,7 +148,7 @@ export const get_by_id = (req, res, next) => {
             }
         })
         .catch(err => {
-            res.status(500).json({ error: err })
+            res.status(500).json({ error: err });
         });
 }
 
@@ -157,7 +157,7 @@ export const get_all_tags = (req, res, next) => {
         .exec()
         .then(doc => {
             if (doc.length == 0) {
-                res.status(404).json({ message: "Could not retrieve results" })
+                res.status(404).json({ message: "Could not retrieve results" });
             } else {
                 const gameFilter = ["FH4", "FH5"];
                 const games = [];
@@ -171,6 +171,6 @@ export const get_all_tags = (req, res, next) => {
             }
         })
         .catch(err => {
-            res.status(500).json({ error: err })
+            res.status(500).json({ error: err });
         });
 }

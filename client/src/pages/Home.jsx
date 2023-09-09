@@ -1,8 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import {
-    Typography,
-} from '@material-tailwind/react';
+import axios from '@/api/axios.js';
+import { Typography } from '@material-tailwind/react';
 import {
     easeIn,
     easeInOut,
@@ -11,7 +8,8 @@ import {
     useSpring,
     useTransform,
 } from "framer-motion";
-import axios from '@/api/axios.js';
+import PropTypes from 'prop-types';
+import React, { useEffect, useRef, useState } from 'react';
 import './HomeStyles.css';
 
 Image.propTypes = {

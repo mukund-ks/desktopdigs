@@ -1,17 +1,17 @@
-import React, { useContext, useEffect } from "react";
 import axios from '@/api/axios.js';
-import AuthContext from "../context/AuthProvider";
-import PropTypes from 'prop-types';
 import {
-    Typography,
+    Alert,
     Button,
-    Dialog,
+    Card,
     CardBody,
     CardFooter,
-    Card,
+    Dialog,
     Input,
-    Alert,
+    Typography,
 } from '@material-tailwind/react';
+import PropTypes from 'prop-types';
+import React, { useContext, useEffect } from "react";
+import AuthContext from "../context/AuthProvider";
 
 RegisterDialog.propTypes = {
     registerDialog: PropTypes.bool,
@@ -42,7 +42,7 @@ export default function RegisterDialog(props) {
     }, [email, pwd]);
 
     const handleRegister = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
             const res = await axios.post(REGISTER_URL,
                 JSON.stringify(

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { IconButton, Typography, Spinner } from "@material-tailwind/react";
-import { motion, easeInOut } from "framer-motion";
 import axios from '@/api/axios.js';
+import { IconButton, Spinner, Typography } from "@material-tailwind/react";
+import { easeInOut, motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
 import Images from "../components/ImageResult";
 import './GalleryStyles.css';
 

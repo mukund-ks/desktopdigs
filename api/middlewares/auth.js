@@ -7,17 +7,17 @@ export const verifyToken = (req, res, next) => {
         return res.status(401).json({ message: 'Access Denied / Unauthorized request' });
     } else {
         try {
-            token = token.split(' ')[1]
+            token = token.split(' ')[1];
             // console.log(token);
             if (token == null || !token) {
                 return res.status(401).json({ message: 'Unauthorized request' });
             }
-    
+
             const verifiedUser = jwt.verify(token, process.env.JWT_SECRET);
             if (!verifiedUser) {
                 return res.status(403).json({ message: 'Unauthorized request' });
             }
-    
+
             req.user = verifiedUser;
             next();
         } catch (error) {

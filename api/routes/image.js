@@ -1,13 +1,13 @@
 import Express from 'express';
-const router = Express.Router();
 import {
-    get_all_images,
     add_image,
-    get_by_tags,
-    get_by_single_tag,
+    get_all_images,
+    get_all_tags,
     get_by_id,
-    get_all_tags
+    get_by_single_tag,
+    get_by_tags
 } from '../controllers/image.js';
+const router = Express.Router();
 
 router.get('/all', get_all_images);
 

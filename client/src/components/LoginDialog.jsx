@@ -1,17 +1,17 @@
-import React, { useContext, useEffect } from "react";
 import axios from '@/api/axios.js';
-import AuthContext from "../context/AuthProvider";
-import PropTypes from 'prop-types';
 import {
-    Typography,
+    Alert,
     Button,
-    Dialog,
+    Card,
     CardBody,
     CardFooter,
-    Card,
+    Dialog,
     Input,
-    Alert,
+    Typography,
 } from '@material-tailwind/react';
+import PropTypes from 'prop-types';
+import React, { useContext, useEffect } from "react";
+import AuthContext from "../context/AuthProvider";
 
 LoginDialog.propTypes = {
     loginDialog: PropTypes.bool,
@@ -38,7 +38,7 @@ export default function LoginDialog(props) {
     }, [email, pwd]);
 
     const handleLogin = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
             const res = await axios.post(LOGIN_URL,
                 JSON.stringify(
@@ -54,8 +54,8 @@ export default function LoginDialog(props) {
             );
             const token = res?.data?.token;
             const admin = res?.data?.admin;
-            const username = res?.data?.username
-            const name = res?.data?.name
+            const username = res?.data?.username;
+            const name = res?.data?.name;
 
             localStorage.setItem('jwt', token);
 

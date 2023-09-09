@@ -1,8 +1,8 @@
+import { Typography } from "@material-tailwind/react";
+import { easeInOut, motion } from "framer-motion";
+import PropTypes from 'prop-types';
 import React, { useState } from "react";
 import Viewer from 'react-viewer';
-import { motion, easeInOut } from "framer-motion";
-import { Typography } from "@material-tailwind/react";
-import PropTypes from 'prop-types';
 
 Images.propTypes = {
     imageURL: PropTypes.string,

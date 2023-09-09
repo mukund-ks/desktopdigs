@@ -1,6 +1,6 @@
-import React, { createContext, useState, useEffect } from "react";
-import PropTypes from 'prop-types';
 import axios from '@/api/axios.js';
+import PropTypes from 'prop-types';
+import React, { createContext, useEffect, useState } from "react";
 
 const AuthContext = createContext({});
 
@@ -8,7 +8,7 @@ const JWT_URL = '/api/user/jwtinfo';
 
 AuthProvider.propTypes = {
     children: PropTypes.any,
-}
+};
 
 export function AuthProvider({ children }) {
     const [auth, setAuth] = useState({});
