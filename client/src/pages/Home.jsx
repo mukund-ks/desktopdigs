@@ -49,17 +49,17 @@ function Image(props) {
             title: 'Embracing the Legend: Toyota Supra',
             caption: 'A legendary symbol of power and performance, has left an indelible mark on the road. With its iconic design and exhilarating driving dynamics, the Supra embodies a heritage that fuels the dreams of driving enthusiasts worldwide.',
         },
-    ]
+    ];
 
-    const newid = `section-${props.id}`
-    const spacerClass = `spacer layer${props.id} relative md:bottom-[105px] bottom-[70px]`
+    const newid = `section-${props.id}`;
+    const spacerClass = `spacer layer${props.id} relative md:bottom-[105px] bottom-[70px]`;
 
     return (
         <React.Fragment>
-            <section className='h-[100vh] px-[12vw] snap-center relative items-center flex flex-col justify-center border-none md:flex-row' id={newid}>
+            <section className='h-[100vh] snap-center relative items-center flex flex-col justify-center border-none md:flex-row' id={newid}>
                 <motion.div
                     ref={ref}
-                    className='md:w-[70vw] lg:w-[65vw] lg:h-[70vh] w-[80vw] h-[50vh] relative max-h-[90vh] md:m-[20px] m-0 bg-transparent overflow-hidden rounded-3xl shadow-md'
+                    className='md:w-[70vw] lg:w-[65vw] lg:h-[70vh] w-[80vw] h-[40vh] relative max-h-[90vh] md:m-[20px] m-0 bg-transparent overflow-hidden rounded-3xl shadow-md'
                     initial={{ opacity: 0.5, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1.01 }}
                     whileHover={{ scale: 1.02 }}
@@ -98,7 +98,7 @@ function Image(props) {
                     }
                 </motion.div>
                 <motion.h2
-                    className='m-0 text-myRed3 lg:text-[60px] text-[30px] leading-[1.2] font-bold tracking-[-3px] absolute xl:left-[calc(64.2%+250px)] left-[calc(75%+25px)] drop-shadow-lg z-10'
+                    className='m-0 text-myRed3 lg:text-[60px] text-[30px] leading-[1.2] font-bold tracking-[-3px] absolute xl:left-[calc(64.2%+250px)] left-[calc(75%+10px)] drop-shadow-lg z-10'
                     style={{ y }}
                 >
                     {`#00${props.id + 1}`}
@@ -232,7 +232,7 @@ export default function Home() {
         '64861155d11697b0a9373e7b',
         '64861155d11697b0a9373e8d',
         '64861155d11697b0a9373ed7'
-    ]
+    ];
 
     const { scrollYProgress } = useScroll();
     const scaleX = useSpring(scrollYProgress, {
