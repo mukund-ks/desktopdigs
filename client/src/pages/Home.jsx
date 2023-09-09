@@ -59,7 +59,7 @@ function Image(props) {
             <section className='h-[100vh] snap-center relative items-center flex flex-col justify-center border-none md:flex-row' id={newid}>
                 <motion.div
                     ref={ref}
-                    className='md:w-[70vw] lg:w-[65vw] lg:h-[70vh] w-[80vw] h-[40vh] relative max-h-[90vh] md:m-[20px] m-0 bg-transparent overflow-hidden rounded-3xl shadow-md'
+                    className='md:w-[70vw] lg:w-[65vw] lg:h-[65vh] w-[80vw] h-[40vh] relative max-h-[90vh] md:m-[20px] m-0 bg-transparent overflow-hidden rounded-3xl shadow-md'
                     initial={{ opacity: 0.5, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1.01 }}
                     whileHover={{ scale: 1.02 }}
@@ -77,10 +77,10 @@ function Image(props) {
                                 <figcaption
                                     className="absolute bottom-8 left-2/4 flex flex-col w-[calc(100%-4rem)] -translate-x-2/4 justify-between rounded-xl bg-[#28282B]/60 py-4 px-6 saturate-200 backdrop-blur-sm opacity-0 hover:opacity-100 lg:opacity-100 transition-opacity"
                                 >
-                                    <Typography variant="h5" className='text-black font-semibold text-[15px] lg:text-[20px] leading-normal tracking-wide'>
+                                    <Typography variant="h5" className='text-black font-semibold text-[15px] lg:text-[18px] leading-normal tracking-wide'>
                                         {captionObj[props.id].title}
                                     </Typography>
-                                    <Typography className="mt-2 font-normal text-[#D3D3D3] text-[13px] lg:text-[20px] leading-normal tracking-wide">
+                                    <Typography className="mt-2 font-normal text-[#D3D3D3] text-[13px] lg:text-[16px] leading-normal tracking-wide">
                                         {captionObj[props.id].caption}
                                     </Typography>
                                 </figcaption>
