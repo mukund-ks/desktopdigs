@@ -15,7 +15,7 @@ ShowTags.propTypes = {
 
 function ShowTags(props) {
     return (
-        <label className="text-mywhite bg-myGray mx-2 p-2 rounded-md radio-label">
+        <label className="text-mywhite bg-myGray mx-2 p-2 rounded-md radio-label text-xs lg:text-md">
             <input
                 type="radio"
                 className="mx-1 radio-input"
@@ -141,7 +141,7 @@ export default function Search() {
 
     return (
         <div className="flex flex-col absolute">
-            <section className="h-[100vh] w-[100vw] items-center flex flex-col justify-center md:snap-center gap-y-20">
+            <section className="h-[100vh] w-[100vw] items-center flex flex-col justify-center md:snap-center gap-y-5 lg:gap-y-20">
                 <div>
                     <motion.div
                         initial={{ opacity: 0, x: '-10px' }}
