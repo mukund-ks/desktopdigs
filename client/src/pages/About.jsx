@@ -32,14 +32,14 @@ export default function About() {
                         whileInView={{ opacity: 1, y: '0px', x: 0 }}
                         transition={{ ease: easeInOut, duration: 0.8 }}
                     >
-                        <Typography variant="h1" className="text-myRed3">About</Typography>
+                        <Typography variant="h1" className="text-myRed3 drop-shadow-xl tracking-wide">About</Typography>
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, y: '10px', x: 5 }}
                         whileInView={{ opacity: 1, y: '0px', x: 0 }}
                         transition={{ ease: easeInOut, duration: 0.8 }}
                     >
-                        <Typography variant="lead" className="text-myGray">beyond the shutter.</Typography>
+                        <Typography variant="lead" className="text-myGray tracking-wide">beyond the shutter.</Typography>
                     </motion.div>
                 </div>
                 <div className="text-center w-5/6 break-words leading-loose">

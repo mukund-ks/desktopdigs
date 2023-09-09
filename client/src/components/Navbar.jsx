@@ -69,7 +69,7 @@ const Nav = () => {
                 as="li"
                 variant="small"
                 color="blue-gray"
-                className="p-1 font-normal text-md transition-colors text-mywhite hover:text-myGray focus:text-myGray"
+                className="p-1 font-normal text-md tracking-wide transition-colors text-mywhite hover:text-myGray focus:text-myGray"
             >
                 <Link to='/' className="flex items-center">Home</Link>
             </Typography>
@@ -77,7 +77,7 @@ const Nav = () => {
                 as="li"
                 variant="small"
                 color="blue-gray"
-                className="p-1 font-normal text-md transition-colors text-mywhite hover:text-myGray focus:text-myGray"
+                className="p-1 font-normal text-md tracking-wide transition-colors text-mywhite hover:text-myGray focus:text-myGray"
             >
                 <Link to='/gallery' className="flex items-center">Gallery</Link>
             </Typography>
@@ -85,7 +85,7 @@ const Nav = () => {
                 as="li"
                 variant="small"
                 color="blue-gray"
-                className="p-1 font-normal text-md transition-colors text-mywhite hover:text-myGray focus:text-myGray"
+                className="p-1 font-normal text-md tracking-wide transition-colors text-mywhite hover:text-myGray focus:text-myGray"
             >
                 <Link to='/search' className="flex items-center">Search</Link>
             </Typography>
@@ -93,7 +93,7 @@ const Nav = () => {
                 as="li"
                 variant="small"
                 color="blue-gray"
-                className="p-1 font-normal text-md transition-colors text-mywhite hover:text-myGray focus:text-myGray"
+                className="p-1 font-normal text-md tracking-wide transition-colors text-mywhite hover:text-myGray focus:text-myGray"
             >
                 <Link to='/about' className="flex items-center">About</Link>
             </Typography>
@@ -109,7 +109,7 @@ const Nav = () => {
                     <Typography
                         as="a"
                         href="/"
-                        className="mr-4 cursor-pointer py-1.5 font-medium text-xl text-mywhite"
+                        className="mr-4 cursor-pointer py-1.5 font-medium text-xl text-mywhite tracking-wide"
                     >
                         DesktopDigs
                     </Typography>
@@ -125,11 +125,11 @@ const Nav = () => {
                                     ripple={false}
                                 >
                                     {/* login */}
-                                    <Button onClick={handleLoginDialog} className="rounded-l-md">
+                                    <Button onClick={handleLoginDialog} className="rounded-l-md tracking-wide">
                                         <span>Login</span>
                                     </Button>
                                     {/* Register */}
-                                    <Button onClick={handleRegisterDialog} className="rounded-r-md">
+                                    <Button onClick={handleRegisterDialog} className="rounded-r-md tracking-wide">
                                         <span>Register</span>
                                     </Button>
                                 </ButtonGroup>
@@ -183,12 +183,12 @@ const Nav = () => {
                                     {/* Profile */}
                                     <Button
                                         onClick={handleProfileDialog}
-                                        className="rounded-l-md">
+                                        className="rounded-l-md tracking-wide">
                                         <span>Profile</span>
                                     </Button>
                                     {/* Logout */}
                                     <Button
-                                        className="rounded-r-md"
+                                        className="rounded-r-md tracking-wide"
                                         onClick={handleLogout}
                                     >
                                         Logout
@@ -243,7 +243,7 @@ const Nav = () => {
                                     variant="text"
                                     size="sm"
                                     fullWidth
-                                    className="mb-2"
+                                    className="mb-2 tracking-wide"
                                     color="white"
                                     ripple={false}
                                     onClick={handleLoginDialog}
@@ -254,7 +254,7 @@ const Nav = () => {
                                     variant="text"
                                     size="sm"
                                     fullWidth
-                                    className="mb-2"
+                                    className="mb-2 tracking-wide"
                                     color="white"
                                     ripple={false}
                                     onClick={handleRegisterDialog}
@@ -268,7 +268,7 @@ const Nav = () => {
                                     variant="text"
                                     size="sm"
                                     fullWidth
-                                    className="mb-2"
+                                    className="mb-2 tracking-wide"
                                     color="white"
                                     ripple={false}
                                     onClick={handleProfileDialog}
@@ -280,7 +280,7 @@ const Nav = () => {
                                     variant="text"
                                     size="sm"
                                     fullWidth
-                                    className="mb-2"
+                                    className="mb-2 tracking-wide"
                                     ripple={false}
                                     color="white"
                                     onClick={handleLogout}

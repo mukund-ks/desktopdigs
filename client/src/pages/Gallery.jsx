@@ -75,7 +75,7 @@ export default function Gallery() {
                     whileInView={{ opacity: 1, y: '0px' }}
                     transition={{ ease: easeInOut, duration: 0.8 }}
                 >
-                    <Typography variant='h1' className='text-myRed3 tracking-wide'>The Gallery</Typography>
+                    <Typography variant='h1' className='text-myRed3 drop-shadow-xl tracking-wide'>The Gallery</Typography>
                 </motion.div>
                 <motion.div
                     initial={{ opacity: 0, x: '10px' }}

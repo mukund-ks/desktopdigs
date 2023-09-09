@@ -148,7 +148,7 @@ export default function Search() {
                         whileInView={{ opacity: 1, x: '0px' }}
                         transition={{ ease: easeInOut, duration: 0.8 }}
                     >
-                        <Typography variant="h1" className="text-myRed3 tracking-wide">Search</Typography>
+                        <Typography variant="h1" className="text-myRed3 drop-shadow-xl tracking-wide">Search</Typography>
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, x: '10px' }}

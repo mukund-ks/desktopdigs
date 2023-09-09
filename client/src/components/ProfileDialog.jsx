@@ -107,7 +107,7 @@ export default function ProfileDialog(props) {
                             size="sm"
                             color="white"
                             onClick={() => { props.handlePasswordDialog(); props.handleProfileDialog(); }}
-                            className="rounded-full bg-transparent shadow-none focus:shadow-none active:shadow-none hover:shadow-none border-2 border-myRed3/80 text-mywhite hover:border-myRed3/70 hover:text-mywhite/70"
+                            className="rounded-full bg-transparent shadow-none tracking-wide focus:shadow-none active:shadow-none hover:shadow-none border-2 border-myRed3/80 text-mywhite hover:border-myRed3/70 hover:text-mywhite/70"
                             ripple={false}
                         >
                             Change Password
@@ -119,7 +119,7 @@ export default function ProfileDialog(props) {
                                     size="sm"
                                     color="white"
                                     onClick={refreshDB}
-                                    className="rounded-full bg-transparent shadow-none focus:shadow-none active:shadow-none hover:shadow-none border-2 border-myRed3/80 text-mywhite hover:border-myRed3/70 hover:text-mywhite/70"
+                                    className="rounded-full bg-transparent shadow-none tracking-wide focus:shadow-none active:shadow-none hover:shadow-none border-2 border-myRed3/80 text-mywhite hover:border-myRed3/70 hover:text-mywhite/70"
                                     ripple={false}
                                 >
                                     Refresh DB

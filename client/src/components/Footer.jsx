@@ -7,7 +7,7 @@ const Footer = () => {
         <React.Fragment>
             <footer className="fixed bottom-0 z-50 flex w-full flex-row flex-wrap justify-center gap-y-6 gap-x-12 py-6 px-6 mt-6 text-center md:justify-between">
                 <div>
-                    <Typography color="white" className="font-normal">
+                    <Typography color="white" className="font-normal tracking-wide">
                         <span className="flex flex-row text-mywhite">
                             Made with
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 mx-2 fill-mywhite">
@@ -22,7 +22,7 @@ const Footer = () => {
                             as="a"
                             href="https://github.com/mukund-ks"
                             target='_blank'
-                            className="font-normal transition-colors text-mywhite hover:text-myGray"
+                            className="font-normal tracking-wide transition-colors text-mywhite hover:text-myGray"
                         >
                             Creator
                         </Typography>
@@ -32,7 +32,7 @@ const Footer = () => {
                             as="a"
                             href="https://github.com/mukund-ks/desktopdigs"
                             target='_blank'
-                            className="font-normal transition-colors text-mywhite hover:text-myGray"
+                            className="font-normal tracking-wide transition-colors text-mywhite hover:text-myGray"
                         >
                             Github
                         </Typography>
@@ -43,7 +43,7 @@ const Footer = () => {
                             href="mailto:mukund.28.k@gmail.com"
                             target='_blank'
                             color="blue-gray"
-                            className="font-normal transition-colors text-mywhite hover:text-myGray"
+                            className="font-normal tracking-wide transition-colors text-mywhite hover:text-myGray"
                         >
                             Contact
                         </Typography>
