@@ -11,12 +11,12 @@ const app = Express();
 
 const allowedOrigins = [
     'http://localhost:5173',
-]
+];
 const corsOptions = {
     origin: allowedOrigins,
-    allowedHeaders: ['Origin, X-Requested-With, Content-Type, Accept, Authorization'],
+    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
     credentials: true,
-}
+};
 
 try {
     mongoose.connect(`mongodb+srv://mukundKS:${process.env.MONGODB_PASS}@ddcluster.p4gf2tv.mongodb.net/?retryWrites=true&w=majority`);
