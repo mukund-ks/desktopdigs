@@ -25,6 +25,6 @@ Beyond being a showcase for my in-game photography, DesktopDigs serves as a pers
 - [x] Admin Options
 - [x] Change Password functionality
 - [x] Responsiveness
-- [ ] Deployment
+- [x] Deployment
 
 See the [open issues](https://github.com/mukund-ks/desktopdigs/issues) for a list of proposed features (and known issues).
