@@ -44,7 +44,13 @@ export default function Gallery() {
                 setImgsCount(() => count);
                 setImages(() => [...imgArr]);
             } catch (err) {
-                console.log(err);
+                if (!err?.response) {
+                    alert("No Server Response");
+                } else if (err.response?.status === 404) {
+                    alert("Could not get images");
+                } else if (err.response?.status === 500) {
+                    alert("Internal Server Error");
+                }
             }
         })();
     }, []);

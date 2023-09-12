@@ -21,7 +21,6 @@ const Nav = () => {
     const [profileDialog, setProfileDialog] = useState(false);
     const [passwordDialog, setPasswordDialog] = useState(false);
     const {
-        auth,
         setAuth,
         setErrMsg,
         authSuccess,
@@ -99,8 +98,6 @@ const Nav = () => {
             </Typography>
         </ul>
     );
-
-    console.log(auth);
 
     return (
         <React.Fragment>
