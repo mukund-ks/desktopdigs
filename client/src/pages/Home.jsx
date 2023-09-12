@@ -1,4 +1,3 @@
-import axios from '@/api/axios.js';
 import { Typography } from '@material-tailwind/react';
 import {
     easeIn,
@@ -10,6 +9,7 @@ import {
 } from "framer-motion";
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
+import axios from "../../axios.js";
 import './HomeStyles.css';
 
 Image.propTypes = {

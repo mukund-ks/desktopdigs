@@ -1,4 +1,3 @@
-import axios from "@/api/axios.js";
 import {
     Button,
     Dialog,
@@ -9,6 +8,7 @@ import {
 } from "@material-tailwind/react";
 import PropTypes from 'prop-types';
 import React, { useContext } from "react";
+import axios from "../../axios.js";
 import AuthContext from "../context/AuthProvider";
 
 const REFRESH_URL = "/api/images/";

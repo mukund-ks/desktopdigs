@@ -1,4 +1,3 @@
-import axios from '@/api/axios.js';
 import {
     Alert,
     Button,
@@ -11,6 +10,7 @@ import {
 } from '@material-tailwind/react';
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect } from "react";
+import axios from "../../axios.js";
 import AuthContext from "../context/AuthProvider";
 
 LoginDialog.propTypes = {

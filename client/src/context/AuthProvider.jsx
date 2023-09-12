@@ -1,6 +1,6 @@
-import axios from '@/api/axios.js';
 import PropTypes from 'prop-types';
 import React, { createContext, useEffect, useState } from "react";
+import axios from "../../axios.js";
 
 const AuthContext = createContext({});
 
