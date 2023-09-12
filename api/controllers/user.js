@@ -1,7 +1,14 @@
 import bcrypt from 'bcrypt';
+import { configDotenv } from 'dotenv';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import User from '../models/user.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+configDotenv({ path: __dirname + '/.env' });
 
 export const register_user = (req, res, next) => {
     User.find({ $or: [{ email: req.body.email }, { username: req.body.username }] })

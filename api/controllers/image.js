@@ -1,6 +1,13 @@
 import { ListObjectsV2Command, S3Client } from '@aws-sdk/client-s3';
+import { configDotenv } from 'dotenv';
 import mongoose from 'mongoose';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import Image from '../models/image.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+configDotenv({ path: __dirname + '/.env' });
 
 const client = new S3Client({
     region: 'ap-south-1',

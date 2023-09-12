@@ -2,13 +2,11 @@ import jwt from 'jsonwebtoken';
 
 export const verifyToken = (req, res, next) => {
     let token = req.headers.authorization;
-    // console.log(token);
     if (!token) {
         return res.status(401).json({ message: 'Access Denied / Unauthorized request' });
     } else {
         try {
             token = token.split(' ')[1];
-            // console.log(token);
             if (token == null || !token) {
                 return res.status(401).json({ message: 'Unauthorized request' });
             }

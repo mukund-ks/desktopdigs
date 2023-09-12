@@ -1,11 +1,18 @@
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import { configDotenv } from 'dotenv';
 import Express from 'express';
 import mongoose from 'mongoose';
 import logger from 'morgan';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import imageRoutes from './routes/image.js';
 import staticRoute from './routes/static.js';
 import userRoutes from './routes/user.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+configDotenv({ path: __dirname + '/.env' });
 
 const app = Express();
 
