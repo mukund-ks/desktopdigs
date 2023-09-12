@@ -18,7 +18,7 @@ const app = Express();
 
 const allowedOrigins = [
     'http://localhost:5173',
-    'https://desktopdigs.vercel.app/',
+    'https://desktopdigs.vercel.app',
 ];
 const corsOptions = {
     origin: allowedOrigins,
