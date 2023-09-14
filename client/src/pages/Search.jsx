@@ -1,4 +1,4 @@
-import { IconButton, Typography } from "@material-tailwind/react";
+import { IconButton, Typography, Spinner } from "@material-tailwind/react";
 import { easeInOut, motion } from "framer-motion";
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from "react";
@@ -50,11 +50,12 @@ export default function Search() {
     const [brand, setBrand] = useState('');
     const [brandList, setBrandList] = useState([]);
     const [query, setQuery] = useState("");
-    const [error, setError] = useState();
+    const [error, setError] = useState("");
     const [images, setImages] = useState([]);
     const [imgsCount, setImgsCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [imgsPerPage] = useState(6);
+    const [loading, setLoading] = useState(false);
 
     const TAG_URL = "/api/images/all-tags";
     const IMG_URL = "api/images";
@@ -62,6 +63,7 @@ export default function Search() {
     useEffect(() => {
         (async function fetchTags() {
             try {
+                setLoading(true);
                 const res = await axios.get(TAG_URL, { headers: { "Content-Type": "application/json" } });
 
                 const brandTags = res?.data?.brandTags;
@@ -69,7 +71,9 @@ export default function Search() {
 
                 setBrandList(() => [...brandTags]);
                 setGameList(() => [...gameTags]);
+                setLoading(false);
             } catch (err) {
+                setLoading(false);
                 if (!err?.response) {
                     setError("No Server Response");
                 } else if (err.response?.status === 404) {
@@ -181,6 +185,19 @@ export default function Search() {
                                     })
                                 }
                             </div>
+                        ) : loading ? (
+                            <div className="flex flex-col items-center gap-4">
+                                <Spinner
+                                    color="white"
+                                    className="h-7 w-7 text-myRed3"
+                                />
+                                <Typography
+                                    variant='lead'
+                                    className='text-sm text-mywhite'
+                                >
+                                    Loading tags..
+                                </Typography>
+                            </div>
                         ) : (
                             <Typography
                                 variant="paragraph"
@@ -206,6 +223,19 @@ export default function Search() {
                                         );
                                     })
                                 }
+                            </div>
+                        ) : loading ? (
+                            <div className="flex flex-col items-center gap-4">
+                                <Spinner
+                                    color="white"
+                                    className="h-7 w-7 text-myRed3"
+                                />
+                                <Typography
+                                    variant='lead'
+                                    className='text-sm text-mywhite'
+                                >
+                                    Loading tags..
+                                </Typography>
                             </div>
                         ) : (
                             <Typography
