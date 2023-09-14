@@ -1,4 +1,4 @@
-import { Typography } from '@material-tailwind/react';
+import { Typography, Spinner } from '@material-tailwind/react';
 import {
     easeIn,
     easeInOut,
@@ -286,12 +286,23 @@ export default function Home() {
                     style={{ scaleX }}
                 />
                 <Intro />
-                {loaded &&
+                {loaded ? (
                     images.map((img, id) => (
                         <React.Fragment key={id}>
                             <Image imglink={img.imageURL} id={id} valid={img.valid} />
                         </React.Fragment>
-                    ))}
+                    ))
+                ) : (
+                    <section className='snap-center h-[100vh] w-[100vw] flex flex-col items-center justify-center'>
+                        <div className="flex flex-col items-center gap-4">
+                            <Spinner
+                                color="white"
+                                className="h-10 w-10 text-myRed3"
+                            />
+                            <Typography variant='h2' className='text-md text-mywhite'>Loading...</Typography>
+                        </div>
+                    </section>
+                )}
             </div>
         </React.Fragment>
     );
