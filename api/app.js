@@ -4,7 +4,7 @@ import { configDotenv } from 'dotenv';
 import Express from 'express';
 import mongoose from 'mongoose';
 import logger from 'morgan';
-import { dirname } from 'path';
+import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import imageRoutes from './routes/image.js';
 import staticRoute from './routes/static.js';
@@ -34,7 +34,7 @@ try {
     console.log(err);
 }
 
-app.use(Express.static('public'));
+app.use(Express.static(path.join(__dirname, 'public')));
 
 app.use(logger('dev'));
 
