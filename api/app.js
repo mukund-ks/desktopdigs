@@ -11,6 +11,7 @@ import staticRoute from './routes/static.js';
 import userRoutes from './routes/user.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+console.log(__dirname)
 
 configDotenv({ path: __dirname + '/.env' });
 
