@@ -7,6 +7,11 @@ html {
     overflow: hidden;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .container {
     font-family: Cabin;
     background-color: #1A1A1D;
