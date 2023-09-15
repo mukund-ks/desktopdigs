@@ -208,7 +208,7 @@ function Intro() {
                 </motion.div>
             </section>
             <motion.div
-                className='spacer layer relative md:bottom-[160px] bottom-[90px]'
+                className='spacer layer relative md:bottom-[160px] bottom-[90px] -z-10'
                 initial={{ opacity: 0, y: -10 }}
                 whileInView={{ opacity: 1, y: 5 }}
                 whileHover={{ scale: 1.03 }}
