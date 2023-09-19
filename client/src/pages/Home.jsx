@@ -57,7 +57,7 @@ function Image(props) {
             <section className='h-[100vh] snap-center relative items-center flex flex-col justify-center border-none md:flex-row' id={newid}>
                 <motion.div
                     ref={ref}
-                    className='md:w-[70vw] lg:w-[65vw] lg:h-[65vh] w-[80vw] h-[40vh] relative max-h-[90vh] md:m-[20px] m-0 bg-transparent overflow-hidden rounded-3xl shadow-md'
+                    className='aspect-video w-[85%] md:w-[65%] h-auto m-0 bg-transparent overflow-hidden rounded-3xl shadow-md'
                     initial={{ opacity: 0.5, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1.01 }}
                     whileHover={{ scale: 1.02 }}
@@ -73,7 +73,7 @@ function Image(props) {
                                     className='absolute top-0 left-0 bottom-0 right-0 w-full h-full object-fill'
                                 />
                                 <figcaption
-                                    className="absolute bottom-8 left-2/4 flex flex-col w-[calc(100%-4rem)] -translate-x-2/4 justify-between rounded-xl bg-[#28282B]/60 py-4 px-6 saturate-200 backdrop-blur-sm opacity-0 hover:opacity-100 lg:opacity-100 transition-opacity"
+                                    className="absolute bottom-1.5 md:bottom-3 left-2/4 flex flex-col w-[calc(100%-4rem)] -translate-x-2/4 justify-between rounded-xl bg-[#28282B]/60 p-3 md:p-5 saturate-200 backdrop-blur-sm opacity-0 hover:opacity-100 lg:opacity-100 transition-opacity"
                                 >
                                     <Typography variant="h5" className='text-black font-semibold text-[15px] lg:text-[18px] leading-normal tracking-wide'>
                                         {captionObj[props.id].title}
@@ -96,7 +96,7 @@ function Image(props) {
                     }
                 </motion.div>
                 <motion.h2
-                    className='m-0 text-myRed3 lg:text-[60px] text-[30px] leading-[1.2] font-bold tracking-[-3px] absolute xl:left-[calc(64.2%+250px)] left-[calc(75%+10px)] drop-shadow-lg z-10'
+                    className='m-0 text-myRed3 lg:text-[60px] text-[30px] leading-[1.2] font-bold tracking-[-3px] absolute xl:left-[calc(64.2%+250px)] left-[calc(80%+10px)] drop-shadow-lg z-10'
                     style={{ y }}
                 >
                     {`#00${props.id + 1}`}
